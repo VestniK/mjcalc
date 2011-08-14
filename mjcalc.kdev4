@@ -1,0 +1,4 @@
+[Project]
+Name=mjcalc
+Manager=KDevCMakeManager
+VersionControl=kdevgit
