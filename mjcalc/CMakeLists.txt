@@ -9,4 +9,4 @@ set(mjcalc_MOC_HDRS
 
 qt4_wrap_cpp(mjcalc_MOC ${mjcalc_MOC_HDRS})
 add_executable(mjcalc ${mjcalc_SRCS} ${mjcalc_MOC})
-target_link_libraries(mjcalc ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY})
+target_link_libraries(mjcalc ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTDECLARATIVE_LIBRARY})
