@@ -1,5 +1,12 @@
 set(QMLS
   main.qml
+  Background.qml
+  MjcInput.qml
+  rdragon.svg
+  east.svg
+  south.svg
+  west.svg
+  north.svg
 )
 
 foreach(_qml ${QMLS})

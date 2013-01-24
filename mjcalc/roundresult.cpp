@@ -21,18 +21,24 @@
 
 using namespace mjcalc;
 
-RoundResult::RoundResult()
+void calcTotals(const RoundResult &results, int totals[playersCount])
 {
-
+    for (size_t i = 0; i < playersCount; ++i) {
+        for (size_t j = 0; j < i; ++j) {
+            int debt = results.scores[i] - results.scores[j];
+            if (i == results.winner)
+                debt = results.scores[i];
+            else if (j == results.winner)
+                debt = -results.scores[j];
+            if (i == results.eastPlayer || j == results.eastPlayer)
+                debt *= 2;
+            totals[i] += debt;
+            totals[j] -= debt;
+        }
+    }
 }
 
-RoundResult::RoundResult(const RoundResult& other)
+size_t calcNextEast(const RoundResult &results)
 {
-
+    return results.winner == results.eastPlayer ? results.eastPlayer : (results.eastPlayer + 1)%playersCount;
 }
-
-RoundResult::~RoundResult()
-{
-
-}
-

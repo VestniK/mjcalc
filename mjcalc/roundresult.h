@@ -20,15 +20,21 @@
 #ifndef MJCALC_ROUNDRESULT_H
 #define MJCALC_ROUNDRESULT_H
 
+#include <sys/types.h>
+
 namespace mjcalc {
 
-class RoundResult
+static const size_t playersCount = 4;
+
+struct RoundResult
 {
-public:
-    RoundResult();
-    RoundResult(const RoundResult& other);
-    virtual ~RoundResult();
+    int scores[playersCount];
+    size_t winner;
+    size_t eastPlayer;
 };
+
+void calcTotals(const RoundResult &results, int totals[playersCount]);
+size_t calcNextEast(const RoundResult &results);
 
 }
 
