@@ -55,6 +55,15 @@ Background {
                 margins: 10
             }
         }
+        Button {
+            id: button
+            width: parent.width/2
+            text: qsTr("Calculate")
+            anchors {
+                top: playerNorth.bottom
+                horizontalCenter: parent.horizontalCenter
+                margins: 10
+            }
         }
     }
 }

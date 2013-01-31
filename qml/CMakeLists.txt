@@ -1,6 +1,7 @@
 set(QMLS
   main.qml
   Background.qml
+  Button.qml
   MjcInput.qml
   rdragon.svg
   east.svg
