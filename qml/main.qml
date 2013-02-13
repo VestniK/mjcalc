@@ -10,7 +10,8 @@ Background {
         contentHeight: childrenRect.height
         MjcInput {
             id: playerEast
-            text: "0"
+            target: resultController
+            property: "eastHandScore"
             validator: IntValidator {bottom: 0; top: 1000000;}
             icon: "east.svg"
             anchors {
@@ -21,7 +22,8 @@ Background {
         }
         MjcInput {
             id: playerSouth
-            text: "0"
+            target: resultController
+            property: "southHandScore"
             validator: IntValidator {bottom: 0; top: 1000000;}
             icon: "south.svg"
             anchors {
@@ -33,7 +35,8 @@ Background {
         }
         MjcInput {
             id: playerWest
-            text: "0"
+            target: resultController
+            property: "westHandScore"
             validator: IntValidator {bottom: 0; top: 1000000;}
             icon: "west.svg"
             anchors {
@@ -45,7 +48,8 @@ Background {
         }
         MjcInput {
             id: playerNorth
-            text: "0"
+            target: resultController
+            property: "northHandScore"
             validator: IntValidator {bottom: 0; top: 1000000;}
             icon: "north.svg"
             anchors {
@@ -64,6 +68,8 @@ Background {
                 horizontalCenter: parent.horizontalCenter
                 margins: 10
             }
+
+            onButtonClick: resultController.addScore()
         }
     }
 }

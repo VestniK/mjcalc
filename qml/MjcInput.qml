@@ -4,9 +4,10 @@ Item {
     height: childrenRect.height
     opacity: 0.85
 
-    property string text: ""
     property variant validator: null
     property string icon
+    property alias target: binding.target
+    property alias property: binding.property
 
     Image {
         id: iconImg
@@ -42,13 +43,16 @@ Item {
                 margins: 5
             }
             id: inputArea
-            text: parent.parent.text
             font.family: "Helvetica"
             font.pointSize: 14
             color: "black"
             focus: true
             validator: parent.parent.validator
-            onTextChanged: parent.parent.text = text
         }
+    }
+
+    Binding {
+        id: binding
+        value: inputArea.text
     }
 }

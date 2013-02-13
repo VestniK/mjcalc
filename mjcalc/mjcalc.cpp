@@ -4,6 +4,9 @@
 #include <QtGui/QApplication>
 
 #include <QtDeclarative/QDeclarativeView>
+#include <QtDeclarative/QDeclarativeContext>
+
+#include "resultcontroller.h"
 
 int main(int argc, char **argv)
 {
@@ -13,7 +16,10 @@ int main(int argc, char **argv)
         "qml",
         app.applicationDirPath() + "/../share/mjcalc"
     );
-    QDeclarativeView wnd(QUrl::fromLocalFile(QFileInfo("qml:main.qml").absoluteFilePath()));
+    ResultController resultController;
+    QDeclarativeView wnd;
+    wnd.rootContext()->setContextProperty("resultController", &resultController);
+    wnd.setSource(QUrl::fromLocalFile(QFileInfo("qml:main.qml").absoluteFilePath()));
     wnd.setResizeMode(QDeclarativeView::SizeRootObjectToView);
     wnd.show();
     return app.exec();
