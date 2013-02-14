@@ -1,5 +1,5 @@
 set(QMLS
-  main.qml
+  addResults.qml
   Background.qml
   Button.qml
   MjcInput.qml

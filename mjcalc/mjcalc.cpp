@@ -19,7 +19,7 @@ int main(int argc, char **argv)
     ResultController resultController;
     QDeclarativeView wnd;
     wnd.rootContext()->setContextProperty("resultController", &resultController);
-    wnd.setSource(QUrl::fromLocalFile(QFileInfo("qml:main.qml").absoluteFilePath()));
+    wnd.setSource(QUrl::fromLocalFile(QFileInfo("qml:addResults.qml").absoluteFilePath()));
     wnd.setResizeMode(QDeclarativeView::SizeRootObjectToView);
     wnd.show();
     return app.exec();

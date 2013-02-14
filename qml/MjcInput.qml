@@ -6,6 +6,7 @@ Item {
 
     property variant validator: null
     property string icon
+    property alias text: inputArea.text
     property alias target: binding.target
     property alias property: binding.property
 
@@ -54,5 +55,6 @@ Item {
     Binding {
         id: binding
         value: inputArea.text
+        when: inputArea.text.length != 0
     }
 }
