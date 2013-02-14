@@ -9,6 +9,7 @@ Item {
     property alias text: inputArea.text
     property alias target: binding.target
     property alias property: binding.property
+    property alias winner: iconBG.visible
 
     Image {
         id: iconImg
@@ -16,10 +17,23 @@ Item {
             top: parent.top
             left: parent.left
         }
+        z: 1
         source: parent.icon
-        height: inputRect.height
+        height: 1.4*inputRect.height
         fillMode: Image.PreserveAspectFit
         smooth: true
+    }
+    Image {
+        id: iconBG
+        anchors {
+            top: parent.top
+            left: parent.left
+        }
+        source: "winner.svg"
+        height: iconImg.height
+        fillMode: Image.PreserveAspectFit
+        smooth: true
+        visible: false
     }
 
     Rectangle {

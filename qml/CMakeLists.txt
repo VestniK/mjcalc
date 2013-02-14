@@ -8,6 +8,7 @@ set(QMLS
   south.svg
   west.svg
   north.svg
+  winner.svg
 )
 
 foreach(_qml ${QMLS})

@@ -23,6 +23,7 @@ Background {
         }
         MjcInput {
             id: playerSouth
+            winner: true
             text: "0"
             target: resultController
             property: "southHandScore"
