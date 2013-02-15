@@ -25,6 +25,7 @@ ResultController::~ResultController()
 
 ResultController::ResultController(QObject *parent):
     QObject(parent),
+    mWinner(Unspecified),
     mEastHandScore(0),
     mSouthHandScore(0),
     mWestHandScore(0),
@@ -38,4 +39,5 @@ void ResultController::addScore()
     qDebug("south = %u", mSouthHandScore);
     qDebug("west = %u", mWestHandScore);
     qDebug("north = %u", mNorthHandScore);
+    qDebug("winner = %d", mWinner);
 }

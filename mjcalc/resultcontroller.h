@@ -26,6 +26,8 @@ class ResultController : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(ResultController)
+    Q_ENUMS(Winner)
+    Q_PROPERTY(Winner winner READ winner WRITE setWinner)
     Q_PROPERTY(unsigned eastHandScore READ eastHandScore WRITE setEastHandScore)
     Q_PROPERTY(unsigned southHandScore READ southHandScore WRITE setSouthHandScore)
     Q_PROPERTY(unsigned westHandScore READ westHandScore WRITE setWestHandScore)
@@ -34,6 +36,15 @@ public:
     virtual ~ResultController();
     ResultController(QObject *parent = 0);
 
+    enum Winner {
+        Unspecified,
+        East,
+        South,
+        West,
+        North
+    };
+
+    Winner winner() const {return mWinner;}
     unsigned eastHandScore() const {return mEastHandScore;}
     unsigned southHandScore() const {return mSouthHandScore;}
     unsigned westHandScore() const {return mWestHandScore;}
@@ -42,12 +53,14 @@ public:
 public slots:
     void addScore();
 
+    void setWinner(Winner val) {mWinner = val;}
     void setEastHandScore(unsigned val) {mEastHandScore = val;}
     void setSouthHandScore(unsigned val) {mSouthHandScore = val;}
     void setWestHandScore(unsigned val) {mWestHandScore = val;}
     void setNorthHandScore(unsigned val) {mNorthHandScore = val;}
 
 private:
+    Winner mWinner;
     unsigned mEastHandScore;
     unsigned mSouthHandScore;
     unsigned mWestHandScore;
