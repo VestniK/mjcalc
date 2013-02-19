@@ -1,11 +1,13 @@
 cmake_minimum_required(VERSION 2.6)
 
 set(mjcalc_SRCS
+  game.cpp
   resultcontroller.cpp
   mjcalc.cpp
   roundresult.cpp
 )
 set(mjcalc_MOC_HDRS
+  game.h
   resultcontroller.h
 )
 
