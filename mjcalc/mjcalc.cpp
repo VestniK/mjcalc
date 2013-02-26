@@ -22,7 +22,7 @@ int main(int argc, char **argv)
     QDeclarativeView wnd;
     wnd.rootContext()->setContextProperty("resultController", &resultController);
     wnd.rootContext()->setContextProperty("game", &game);
-    wnd.setSource(QUrl::fromLocalFile(QFileInfo("qml:addResults.qml").absoluteFilePath()));
+    wnd.setSource(QUrl::fromLocalFile(QFileInfo("qml:new.qml").absoluteFilePath()));
     wnd.setResizeMode(QDeclarativeView::SizeRootObjectToView);
     wnd.show();
     return app.exec();

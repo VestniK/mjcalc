@@ -26,3 +26,8 @@ Game::~Game()
 Game::Game(QObject *parent): QObject(parent)
 {
 }
+
+void Game::start()
+{
+    /// @todo Drop old scores and start new game score desk
+}

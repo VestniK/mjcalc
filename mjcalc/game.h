@@ -46,6 +46,8 @@ public slots:
     void setPlayer3(const QString &val) {mPlayers[2] = val;}
     void setPlayer4(const QString &val) {mPlayers[3] = val;}
 
+    void start();
+
 private:
     QString mPlayers[4];
 

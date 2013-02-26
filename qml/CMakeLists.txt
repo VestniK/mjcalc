@@ -1,8 +1,15 @@
 set(QMLS
+# Pages
+  new.qml
   addResults.qml
+# Atomic components
   Background.qml
   Button.qml
+  LineEdit.qml
+# Reusable combinations
   MjcInput.qml
+  NameInput.qml
+# Images
   rdragon.svg
   east.svg
   south.svg
