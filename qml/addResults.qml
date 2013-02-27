@@ -8,58 +8,46 @@ Background {
         }
         contentWidth: parent.width
         contentHeight: childrenRect.height
-        MjcInput {
+        ScoreInput {
             id: playerEast
-            text: "0"
             target: resultController
             property: "eastHandScore"
-            validator: IntValidator {bottom: 0; top: 1000000;}
             icon: "east.svg"
+            width: parent.width
             anchors {
-                left: parent.left
-                right: parent.right
                 margins: 10
             }
         }
-        MjcInput {
+        ScoreInput {
             id: playerSouth
             winner: true
-            text: "0"
             target: resultController
             property: "southHandScore"
-            validator: IntValidator {bottom: 0; top: 1000000;}
             icon: "south.svg"
+            width: parent.width
             anchors {
-                left: parent.left
-                right: parent.right
                 top: playerEast.bottom
                 margins: 10
             }
         }
-        MjcInput {
+        ScoreInput {
             id: playerWest
-            text: "0"
             target: resultController
             property: "westHandScore"
-            validator: IntValidator {bottom: 0; top: 1000000;}
             icon: "west.svg"
+            width: parent.width
             anchors {
-                left: parent.left
-                right: parent.right
                 top: playerSouth.bottom
                 margins: 10
             }
         }
-        MjcInput {
+        ScoreInput {
             id: playerNorth
-            text: "0"
             target: resultController
             property: "northHandScore"
-            validator: IntValidator {bottom: 0; top: 1000000;}
             icon: "north.svg"
+            width: parent.width
             anchors {
-                left: parent.left
-                right: parent.right
                 top: playerWest.bottom
                 margins: 10
             }

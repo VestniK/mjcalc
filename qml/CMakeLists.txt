@@ -7,7 +7,7 @@ set(QMLS
   Button.qml
   LineEdit.qml
 # Reusable combinations
-  MjcInput.qml
+  ScoreInput.qml
   NameInput.qml
 # Images
   rdragon.svg
