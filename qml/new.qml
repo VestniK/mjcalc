@@ -38,7 +38,7 @@ Background {
             }
             // TODO: elliminate this spacer somehow
             Item {height: style.margins; width: parent.width}
-            Button {
+            TextButton {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: qsTr("Start")
                 onButtonClick: game.start()

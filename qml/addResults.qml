@@ -31,7 +31,7 @@ Background {
             }
             // TODO: elliminate this spacer somehow
             Item {height: style.margins; width: parent.width}
-            Button {
+            TextButton {
                 id: button; width: parent.width/2; text: qsTr("Add")
                 anchors.horizontalCenter: parent.horizontalCenter
 

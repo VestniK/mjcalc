@@ -1,7 +1,7 @@
 import QtQuick 1.0
 
 Rectangle {
-    property string text: "Button"
+    property alias text: label.text
 
     height: label.height
     radius: height/2
@@ -20,7 +20,6 @@ Rectangle {
 
     Text {
         id: label
-        text: parent.text
         anchors.centerIn: parent
         font.family: style.labelFont
         font.pointSize: style.labelFontSize

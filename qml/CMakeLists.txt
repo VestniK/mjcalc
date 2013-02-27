@@ -4,7 +4,7 @@ set(QMLS
   addResults.qml
 # Atomic components
   Background.qml
-  Button.qml
+  TextButton.qml
   LineEdit.qml
 # Reusable combinations
   ScoreInput.qml
