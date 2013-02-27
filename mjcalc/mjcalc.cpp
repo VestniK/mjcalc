@@ -20,6 +20,10 @@ int main(int argc, char **argv)
     ResultController resultController;
     Game game;
     QDeclarativeView wnd;
+    wnd.setAttribute(Qt::WA_OpaquePaintEvent);
+    wnd.setAttribute(Qt::WA_NoSystemBackground);
+    wnd.viewport()->setAttribute(Qt::WA_OpaquePaintEvent);
+    wnd.viewport()->setAttribute(Qt::WA_NoSystemBackground);
     wnd.rootContext()->setContextProperty("resultController", &resultController);
     wnd.rootContext()->setContextProperty("game", &game);
     wnd.setSource(QUrl::fromLocalFile(QFileInfo("qml:new.qml").absoluteFilePath()));

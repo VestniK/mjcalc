@@ -9,6 +9,8 @@ set(QMLS
 # Reusable combinations
   ScoreInput.qml
   NameInput.qml
+# Global UI style constants
+  Style.qml
 # Images
   rdragon.svg
   east.svg

@@ -22,8 +22,8 @@ Rectangle {
         id: label
         text: parent.text
         anchors.centerIn: parent
-        font.family: "Helvetica"
-        font.pointSize: 14
+        font.family: style.labelFont
+        font.pointSize: style.labelFontSize
     }
 
     signal buttonClick()

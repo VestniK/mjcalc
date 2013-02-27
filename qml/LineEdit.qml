@@ -15,11 +15,11 @@ Rectangle {
             left: parent.left
             right: parent.right
             top: parent.top
-            margins: 5
+            margins: style.margins
         }
         id: inputArea
-        font.family: "Helvetica"
-        font.pointSize: 14
+        font.family: style.labelFont
+        font.pointSize: style.labelFontSize
         color: "black"
         focus: true
     }
