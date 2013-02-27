@@ -35,6 +35,8 @@ Background {
                 target: game
                 property: "player4"
             }
+            // TODO: elliminate this spacer somehow
+            Item {height: 5; width: parent.width}
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: qsTr("Start")
