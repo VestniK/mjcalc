@@ -32,12 +32,3 @@ ResultController::ResultController(QObject *parent):
     mNorthHandScore(0)
 {
 }
-
-void ResultController::addScore()
-{
-    qDebug("east = %u", mEastHandScore);
-    qDebug("south = %u", mSouthHandScore);
-    qDebug("west = %u", mWestHandScore);
-    qDebug("north = %u", mNorthHandScore);
-    qDebug("winner = %d", mWinner);
-}

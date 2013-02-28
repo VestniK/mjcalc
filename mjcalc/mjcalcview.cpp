@@ -17,24 +17,35 @@
  *
  */
 
-#include "game.h"
+#include "mjcalcview.h"
 
-Game::~Game()
+#include <QtCore/QFileInfo>
+#include <QtCore/QUrl>
+
+MjCalcView::MjCalcView(QWidget* parent): QDeclarativeView(parent)
+{
+    setAttribute(Qt::WA_OpaquePaintEvent);
+    setAttribute(Qt::WA_NoSystemBackground);
+    viewport()->setAttribute(Qt::WA_OpaquePaintEvent);
+    viewport()->setAttribute(Qt::WA_NoSystemBackground);
+    setResizeMode(QDeclarativeView::SizeRootObjectToView);
+}
+
+MjCalcView::~MjCalcView()
 {
 }
 
-Game::Game(QObject *parent): QObject(parent)
+void MjCalcView::showNewPage()
 {
+    setSource(QUrl::fromLocalFile(QFileInfo("qml:new.qml").absoluteFilePath()));
 }
 
-void Game::start()
+void MjCalcView::showAddScores()
 {
-    /// @todo Drop old scores and start new game score desk
-    emit showMainPage();
+    setSource(QUrl::fromLocalFile(QFileInfo("qml:addResults.qml").absoluteFilePath()));
 }
 
-void Game::addScore()
+void MjCalcView::showMainPage()
 {
-    /// @todo add results
-    emit showMainPage();
+    setSource(QUrl::fromLocalFile(QFileInfo("qml:main.qml").absoluteFilePath()));
 }

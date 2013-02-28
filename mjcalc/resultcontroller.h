@@ -51,8 +51,6 @@ public:
     unsigned northHandScore() const {return mNorthHandScore;}
 
 public slots:
-    void addScore();
-
     void setWinner(Winner val) {mWinner = val;}
     void setEastHandScore(unsigned val) {mEastHandScore = val;}
     void setSouthHandScore(unsigned val) {mSouthHandScore = val;}

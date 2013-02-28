@@ -47,8 +47,12 @@ public slots:
     void setPlayer4(const QString &val) {mPlayers[3] = val;}
 
     void start();
+    void addScore();
+
+signals:
     void showNewPage();
     void showAddScores();
+    void showMainPage();
 
 private:
     QString mPlayers[4];

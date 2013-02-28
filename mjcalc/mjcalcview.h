@@ -17,24 +17,25 @@
  *
  */
 
-#include "game.h"
+#ifndef MJCALCVIEW_H
+#define MJCALCVIEW_H
 
-Game::~Game()
-{
-}
+#include <QtDeclarative/QDeclarativeView>
 
-Game::Game(QObject *parent): QObject(parent)
+class MjCalcView : public QDeclarativeView
 {
-}
+    Q_OBJECT
+    Q_DISABLE_COPY(MjCalcView)
 
-void Game::start()
-{
-    /// @todo Drop old scores and start new game score desk
-    emit showMainPage();
-}
+public:
+    explicit MjCalcView(QWidget *parent = 0);
+    virtual ~MjCalcView();
 
-void Game::addScore()
-{
-    /// @todo add results
-    emit showMainPage();
-}
+public slots:
+    void showNewPage();
+    void showAddScores();
+    void showMainPage();
+
+};
+
+#endif // MJCALCVIEW_H

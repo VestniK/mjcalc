@@ -40,7 +40,7 @@ Background {
                     if (playerSouth.text.length == 0) playerSouth.text = "0";
                     if (playerWest.text.length == 0) playerWest.text = "0";
                     if (playerNorth.text.length == 0) playerNorth.text = "0";
-                    resultController.addScore();
+                    game.addScore();
                 }
             }
         }
