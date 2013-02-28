@@ -2,6 +2,7 @@ set(QMLS
 # Pages
   new.qml
   addResults.qml
+  main.qml
 # Atomic components
   Background.qml
   TextButton.qml

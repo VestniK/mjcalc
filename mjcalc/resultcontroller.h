@@ -34,7 +34,7 @@ class ResultController : public QObject
     Q_PROPERTY(unsigned northHandScore READ northHandScore WRITE setNorthHandScore)
 public:
     virtual ~ResultController();
-    ResultController(QObject *parent = 0);
+    explicit ResultController(QObject *parent = 0);
 
     enum Winner {
         Unspecified,

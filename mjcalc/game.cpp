@@ -31,3 +31,13 @@ void Game::start()
 {
     /// @todo Drop old scores and start new game score desk
 }
+
+void Game::showNewPage()
+{
+
+}
+
+void Game::showAddScores()
+{
+
+}

@@ -32,7 +32,7 @@ class Game : public QObject
     Q_PROPERTY(QString player4 READ player4 WRITE setPlayer4)
 
 public:
-    Game(QObject *parent = 0);
+    explicit Game(QObject *parent = 0);
     virtual ~Game();
 
     const QString &player1() const {return mPlayers[0];}
@@ -47,6 +47,8 @@ public slots:
     void setPlayer4(const QString &val) {mPlayers[3] = val;}
 
     void start();
+    void showNewPage();
+    void showAddScores();
 
 private:
     QString mPlayers[4];
