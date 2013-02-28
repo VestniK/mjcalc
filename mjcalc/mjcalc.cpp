@@ -5,7 +5,6 @@
 
 #include <QtDeclarative/QDeclarativeContext>
 
-#include "resultcontroller.h"
 #include "game.h"
 #include "mjcalcview.h"
 
@@ -17,10 +16,8 @@ int main(int argc, char **argv)
         "qml",
         app.applicationDirPath() + "/../share/mjcalc"
     );
-    ResultController resultController;
     Game game;
     MjCalcView wnd;
-    wnd.rootContext()->setContextProperty("resultController", &resultController);
     wnd.rootContext()->setContextProperty("game", &game);
 
     QObject::connect(&game, SIGNAL(showAddScores()), &wnd, SLOT(showAddScores()), Qt::QueuedConnection);

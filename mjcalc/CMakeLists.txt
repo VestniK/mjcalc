@@ -3,14 +3,14 @@ cmake_minimum_required(VERSION 2.6)
 set(mjcalc_SRCS
   mjcalcview.cpp
   game.cpp
-  resultcontroller.cpp
+  round.cpp
   mjcalc.cpp
   roundresult.cpp
 )
 set(mjcalc_MOC_HDRS
   mjcalcview.h
   game.h
-  resultcontroller.h
+  round.h
 )
 
 qt4_wrap_cpp(mjcalc_MOC ${mjcalc_MOC_HDRS})

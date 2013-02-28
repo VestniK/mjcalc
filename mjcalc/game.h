@@ -23,6 +23,8 @@
 #include <QtCore/QObject>
 #include <QtCore/QString>
 
+#include "round.h"
+
 class Game : public QObject
 {
     Q_OBJECT
@@ -30,6 +32,7 @@ class Game : public QObject
     Q_PROPERTY(QString player2 READ player2 WRITE setPlayer2)
     Q_PROPERTY(QString player3 READ player3 WRITE setPlayer3)
     Q_PROPERTY(QString player4 READ player4 WRITE setPlayer4)
+    Q_PROPERTY(QObject *currentRound READ currentRound CONSTANT)
 
 public:
     explicit Game(QObject *parent = 0);
@@ -39,6 +42,7 @@ public:
     const QString &player2() const {return mPlayers[1];}
     const QString &player3() const {return mPlayers[2];}
     const QString &player4() const {return mPlayers[3];}
+    Round *currentRound() {return mCurrentRound;}
 
 public slots:
     void setPlayer1(const QString &val) {mPlayers[0] = val;}
@@ -56,6 +60,7 @@ signals:
 
 private:
     QString mPlayers[4];
+    Round *mCurrentRound;
 
 };
 

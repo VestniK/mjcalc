@@ -14,20 +14,20 @@ Background {
             width: parent.width
             ScoreInput {
                 id: playerEast; icon: "east.svg"; width: parent.width
-                target: resultController; property: "eastHandScore"
+                target: game.currentRound; property: "eastHandScore"
             }
             ScoreInput {
                 id: playerSouth; icon: "south.svg"; width: parent.width
                 winner: true
-                target: resultController; property: "southHandScore"
+                target: game.currentRound; property: "southHandScore"
             }
             ScoreInput {
                 id: playerWest; icon: "west.svg"; width: parent.width
-                target: resultController; property: "westHandScore"
+                target: game.currentRound; property: "westHandScore"
             }
             ScoreInput {
                 id: playerNorth; icon: "north.svg"; width: parent.width
-                target: resultController; property: "northHandScore"
+                target: game.currentRound; property: "northHandScore"
             }
             // TODO: elliminate this spacer somehow
             Item {height: style.margins; width: parent.width}

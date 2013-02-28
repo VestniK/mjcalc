@@ -17,15 +17,15 @@
  *
  */
 
-#ifndef RESULTCONTROLLER_H
-#define RESULTCONTROLLER_H
+#ifndef ROUND_H
+#define ROUND_H
 
 #include <QtCore/QObject>
 
-class ResultController : public QObject
+class Round : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(ResultController)
+    Q_DISABLE_COPY(Round)
     Q_ENUMS(Winner)
     Q_PROPERTY(Winner winner READ winner WRITE setWinner)
     Q_PROPERTY(unsigned eastHandScore READ eastHandScore WRITE setEastHandScore)
@@ -33,11 +33,11 @@ class ResultController : public QObject
     Q_PROPERTY(unsigned westHandScore READ westHandScore WRITE setWestHandScore)
     Q_PROPERTY(unsigned northHandScore READ northHandScore WRITE setNorthHandScore)
 public:
-    virtual ~ResultController();
-    explicit ResultController(QObject *parent = 0);
+    virtual ~Round();
+    explicit Round(QObject *parent = 0);
 
     enum Winner {
-        Unspecified,
+        Unspecified = -1,
         East,
         South,
         West,

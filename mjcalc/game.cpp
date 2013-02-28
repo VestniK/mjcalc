@@ -18,6 +18,7 @@
  */
 
 #include "game.h"
+#include "round.h"
 
 Game::~Game()
 {
@@ -25,6 +26,7 @@ Game::~Game()
 
 Game::Game(QObject *parent): QObject(parent)
 {
+    mCurrentRound = new Round(this);
 }
 
 void Game::start()

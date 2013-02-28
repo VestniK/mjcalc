@@ -17,13 +17,13 @@
  *
  */
 
-#include "resultcontroller.h"
+#include "round.h"
 
-ResultController::~ResultController()
+Round::~Round()
 {
 }
 
-ResultController::ResultController(QObject *parent):
+Round::Round(QObject *parent):
     QObject(parent),
     mWinner(Unspecified),
     mEastHandScore(0),
