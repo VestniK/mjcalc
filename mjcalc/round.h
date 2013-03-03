@@ -22,16 +22,18 @@
 
 #include <QtCore/QObject>
 
+#include "roundresult.h"
+
 class Round : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(Round)
     Q_ENUMS(Winner)
     Q_PROPERTY(Winner winner READ winner WRITE setWinner)
-    Q_PROPERTY(unsigned eastHandScore READ eastHandScore WRITE setEastHandScore)
-    Q_PROPERTY(unsigned southHandScore READ southHandScore WRITE setSouthHandScore)
-    Q_PROPERTY(unsigned westHandScore READ westHandScore WRITE setWestHandScore)
-    Q_PROPERTY(unsigned northHandScore READ northHandScore WRITE setNorthHandScore)
+    Q_PROPERTY(int eastHandScore READ eastHandScore WRITE setEastHandScore)
+    Q_PROPERTY(int southHandScore READ southHandScore WRITE setSouthHandScore)
+    Q_PROPERTY(int westHandScore READ westHandScore WRITE setWestHandScore)
+    Q_PROPERTY(int northHandScore READ northHandScore WRITE setNorthHandScore)
 public:
     virtual ~Round();
     explicit Round(QObject *parent = 0);
@@ -44,25 +46,21 @@ public:
         North
     };
 
-    Winner winner() const {return mWinner;}
-    unsigned eastHandScore() const {return mEastHandScore;}
-    unsigned southHandScore() const {return mSouthHandScore;}
-    unsigned westHandScore() const {return mWestHandScore;}
-    unsigned northHandScore() const {return mNorthHandScore;}
+    Winner winner() const;
+    int eastHandScore() const;
+    int southHandScore() const;
+    int westHandScore() const;
+    int northHandScore() const;
 
 public slots:
-    void setWinner(Winner val) {mWinner = val;}
-    void setEastHandScore(unsigned val) {mEastHandScore = val;}
-    void setSouthHandScore(unsigned val) {mSouthHandScore = val;}
-    void setWestHandScore(unsigned val) {mWestHandScore = val;}
-    void setNorthHandScore(unsigned val) {mNorthHandScore = val;}
+    void setWinner(Winner val);
+    void setEastHandScore(int val);
+    void setSouthHandScore(int val);
+    void setWestHandScore(int val);
+    void setNorthHandScore(int val);
 
 private:
-    Winner mWinner;
-    unsigned mEastHandScore;
-    unsigned mSouthHandScore;
-    unsigned mWestHandScore;
-    unsigned mNorthHandScore;
+    mjcalc::RoundResult result;
 };
 
 #endif // RESULTCONTROLLER_H

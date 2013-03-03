@@ -29,7 +29,7 @@ static const size_t playersCount = 4;
 struct RoundResult
 {
     int scores[playersCount];
-    size_t winner;
+    int winner;
     size_t eastPlayer;
 };
 
