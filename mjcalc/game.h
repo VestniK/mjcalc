@@ -28,6 +28,7 @@
 class Game : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(Game)
     Q_PROPERTY(QString player1 READ player1 WRITE setPlayer1)
     Q_PROPERTY(QString player2 READ player2 WRITE setPlayer2)
     Q_PROPERTY(QString player3 READ player3 WRITE setPlayer3)
@@ -59,7 +60,7 @@ signals:
     void showMainPage();
 
 private:
-    QString mPlayers[4];
+    QString mPlayers[mjcalc::playersCount];
     Round *mCurrentRound;
 
 };
