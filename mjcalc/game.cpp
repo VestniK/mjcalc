@@ -38,5 +38,9 @@ void Game::start()
 void Game::addScore()
 {
     /// @todo add results
+    qDebug("east : %d", mCurrentRound->eastHandScore());
+    qDebug("south: %d", mCurrentRound->southHandScore());
+    qDebug("west : %d", mCurrentRound->westHandScore());
+    qDebug("north: %d", mCurrentRound->northHandScore());
     emit showMainPage();
 }
