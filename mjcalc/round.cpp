@@ -19,8 +19,6 @@
 
 #include "round.h"
 
-// TODO: Move all index to wind calculation related code into roundresult
-
 Round::~Round()
 {
 }
@@ -28,64 +26,54 @@ Round::~Round()
 Round::Round(QObject *parent):
     QObject(parent)
 {
-    for (size_t pos = 0; pos < mjcalc::playersCount; ++pos)
-        result.scores[pos] = 0;
-    result.winner = Unspecified;
-    result.eastPlayer = 0;
 }
 
 int Round::eastHandScore() const
 {
-    return result.scores[result.eastPlayer];
+    return result[mjcalc::East];
 }
 
 int Round::southHandScore() const
 {
-    return result.scores[(result.eastPlayer + South)%mjcalc::playersCount];
+    return result[mjcalc::South];
 }
 
 int Round::westHandScore() const
 {
-    return result.scores[(result.eastPlayer + West)%mjcalc::playersCount];
+    return result[mjcalc::West];
 }
 
 int Round::northHandScore() const
 {
-    return result.scores[(result.eastPlayer + North)%mjcalc::playersCount];
+    return result[mjcalc::North];
 }
 
-Round::Winner Round::winner() const
+mjcalc::Wind Round::winner() const
 {
-    if (result.winner < 0 || result.winner >= mjcalc::playersCount)
-        return Unspecified;
-    return static_cast<Round::Winner>((mjcalc::playersCount + result.winner - result.eastPlayer)%mjcalc::playersCount);
+    return result.winnerWind();
 }
 
 void Round::setEastHandScore(int val)
 {
-    result.scores[result.eastPlayer] = val;
+    result[mjcalc::East] = val;
 }
 
 void Round::setSouthHandScore(int val)
 {
-    result.scores[(result.eastPlayer + South)%mjcalc::playersCount] = val;
+    result[mjcalc::South] = val;
 }
 
 void Round::setWestHandScore(int val)
 {
-    result.scores[(result.eastPlayer + West)%mjcalc::playersCount] = val;
+    result[mjcalc::West] = val;
 }
 
 void Round::setNorthHandScore(int val)
 {
-    result.scores[(result.eastPlayer + North)%mjcalc::playersCount] = val;
+    result[mjcalc::North] = val;
 }
 
-void Round::setWinner(Round::Winner val)
+void Round::setWinner(mjcalc::Wind val)
 {
-    if (val == Unspecified) {
-        result.winner = Unspecified;
-        return;
-    }
-    result.winner = (result.eastPlayer + val)%mjcalc::playersCount;
+    result.setWinner(val);
 }

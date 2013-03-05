@@ -22,14 +22,15 @@
 
 #include <QtCore/QObject>
 
-#include "roundresult.h"
+#include "result.h"
+
+using namespace mjcalc;
 
 class Round : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(Round)
-    Q_ENUMS(Winner)
-    Q_PROPERTY(Winner winner READ winner WRITE setWinner)
+    Q_PROPERTY(Wind winner READ winner WRITE setWinner)
     Q_PROPERTY(int eastHandScore READ eastHandScore WRITE setEastHandScore)
     Q_PROPERTY(int southHandScore READ southHandScore WRITE setSouthHandScore)
     Q_PROPERTY(int westHandScore READ westHandScore WRITE setWestHandScore)
@@ -38,29 +39,21 @@ public:
     virtual ~Round();
     explicit Round(QObject *parent = 0);
 
-    enum Winner {
-        Unspecified = -1,
-        East,
-        South,
-        West,
-        North
-    };
-
-    Winner winner() const;
+    mjcalc::Wind winner() const;
     int eastHandScore() const;
     int southHandScore() const;
     int westHandScore() const;
     int northHandScore() const;
 
 public slots:
-    void setWinner(Winner val);
+    void setWinner(mjcalc::Wind val);
     void setEastHandScore(int val);
     void setSouthHandScore(int val);
     void setWestHandScore(int val);
     void setNorthHandScore(int val);
 
 private:
-    mjcalc::RoundResult result;
+    mjcalc::Result result;
 };
 
 #endif // RESULTCONTROLLER_H

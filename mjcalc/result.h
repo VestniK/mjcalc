@@ -26,15 +26,32 @@ namespace mjcalc {
 
 static const size_t playersCount = 4;
 
-struct RoundResult
-{
-    int scores[playersCount];
-    int winner;
-    size_t eastPlayer;
+enum Wind {
+    Unspecified = -1,
+    East,
+    South,
+    West,
+    North
 };
 
-void calcTotals(const RoundResult &results, int totals[playersCount]);
-size_t calcNextEast(const RoundResult &results);
+class Result
+{
+public:
+    Result();
+
+    void addScores(int totals[playersCount]) const;
+    size_t getNextEast() const;
+    void setWinner(Wind wind);
+    Wind winnerWind() const;
+
+    int operator[] (Wind player) const;
+    int &operator[] (Wind player);
+
+private:
+    int scores[playersCount];
+    size_t winner;
+    size_t eastPlayer;
+};
 
 }
 

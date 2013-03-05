@@ -5,7 +5,7 @@ set(mjcalc_SRCS
   game.cpp
   round.cpp
   mjcalc.cpp
-  roundresult.cpp
+  result.cpp
 )
 set(mjcalc_MOC_HDRS
   mjcalcview.h
