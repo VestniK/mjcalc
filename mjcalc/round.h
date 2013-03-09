@@ -45,6 +45,8 @@ public:
     int westHandScore() const;
     int northHandScore() const;
 
+    const mjcalc::Result &result() const {return mResult;}
+
 public slots:
     void setWinner(mjcalc::Wind val);
     void setEastHandScore(int val);
@@ -53,7 +55,7 @@ public slots:
     void setNorthHandScore(int val);
 
 private:
-    mjcalc::Result result;
+    mjcalc::Result mResult;
 };
 
 #endif // RESULTCONTROLLER_H

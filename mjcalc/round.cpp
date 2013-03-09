@@ -30,50 +30,50 @@ Round::Round(QObject *parent):
 
 int Round::eastHandScore() const
 {
-    return result[mjcalc::East];
+    return mResult[mjcalc::East];
 }
 
 int Round::southHandScore() const
 {
-    return result[mjcalc::South];
+    return mResult[mjcalc::South];
 }
 
 int Round::westHandScore() const
 {
-    return result[mjcalc::West];
+    return mResult[mjcalc::West];
 }
 
 int Round::northHandScore() const
 {
-    return result[mjcalc::North];
+    return mResult[mjcalc::North];
 }
 
 mjcalc::Wind Round::winner() const
 {
-    return result.winnerWind();
+    return mResult.winnerWind();
 }
 
 void Round::setEastHandScore(int val)
 {
-    result[mjcalc::East] = val;
+    mResult[mjcalc::East] = val;
 }
 
 void Round::setSouthHandScore(int val)
 {
-    result[mjcalc::South] = val;
+    mResult[mjcalc::South] = val;
 }
 
 void Round::setWestHandScore(int val)
 {
-    result[mjcalc::West] = val;
+    mResult[mjcalc::West] = val;
 }
 
 void Round::setNorthHandScore(int val)
 {
-    result[mjcalc::North] = val;
+    mResult[mjcalc::North] = val;
 }
 
 void Round::setWinner(mjcalc::Wind val)
 {
-    result.setWinner(val);
+    mResult.setWinner(val);
 }

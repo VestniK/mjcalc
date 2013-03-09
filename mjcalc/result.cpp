@@ -56,7 +56,7 @@ void Result::setWinner(Wind wind)
         winner = static_cast<size_t>(Unspecified);
         return;
     }
-    winner = (eastPlayer + static_cast<size_t>(wind))%playersCount;
+    winner = playerPos(wind);
 }
 
 Wind Result::winnerWind() const
@@ -69,7 +69,7 @@ Wind Result::winnerWind() const
 int Result::operator[] (Wind player) const
 {
     assert(player != Unspecified);
-    return scores[(eastPlayer + player)%playersCount];
+    return scores[playerPos(player)];
 }
 
 int &Result::operator[] (Wind player)
@@ -78,3 +78,9 @@ int &Result::operator[] (Wind player)
     return scores[(eastPlayer + player)%playersCount];
 }
 
+size_t Result::playerPos(Wind player) const
+{
+    if (player == Unspecified)
+        return static_cast<size_t>(-1);
+    return (eastPlayer + static_cast<size_t>(player))%playersCount;
+}

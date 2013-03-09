@@ -29,10 +29,17 @@ class Game : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(Game)
+    // Access players by ID
     Q_PROPERTY(QString player1 READ player1 WRITE setPlayer1)
     Q_PROPERTY(QString player2 READ player2 WRITE setPlayer2)
     Q_PROPERTY(QString player3 READ player3 WRITE setPlayer3)
     Q_PROPERTY(QString player4 READ player4 WRITE setPlayer4)
+    // Access players by wind
+    Q_PROPERTY(QString eastPlayer READ eastPlayer CONSTANT)
+    Q_PROPERTY(QString southPlayer READ southPlayer CONSTANT)
+    Q_PROPERTY(QString westPlayer READ westPlayer CONSTANT)
+    Q_PROPERTY(QString northPlayer READ northPlayer CONSTANT)
+    // Current round
     Q_PROPERTY(QObject *currentRound READ currentRound CONSTANT)
 
 public:
@@ -43,6 +50,12 @@ public:
     const QString &player2() const {return mPlayers[1];}
     const QString &player3() const {return mPlayers[2];}
     const QString &player4() const {return mPlayers[3];}
+
+    const QString &eastPlayer() const;
+    const QString &southPlayer() const;
+    const QString &westPlayer() const;
+    const QString &northPlayer() const;
+
     Round *currentRound() {return mCurrentRound;}
 
 public slots:

@@ -44,3 +44,23 @@ void Game::addScore()
     qDebug("north: %d", mCurrentRound->northHandScore());
     emit showMainPage();
 }
+
+const QString& Game::eastPlayer() const
+{
+     return mPlayers[mCurrentRound->result().playerPos(mjcalc::East)];
+}
+
+const QString& Game::southPlayer() const
+{
+    return mPlayers[mCurrentRound->result().playerPos(mjcalc::South)];
+}
+
+const QString& Game::westPlayer() const
+{
+    return mPlayers[mCurrentRound->result().playerPos(mjcalc::West)];
+}
+
+const QString& Game::northPlayer() const
+{
+    return mPlayers[mCurrentRound->result().playerPos(mjcalc::North)];
+}

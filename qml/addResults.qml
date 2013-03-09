@@ -15,19 +15,23 @@ Background {
             ScoreInput {
                 id: playerEast; icon: "east.svg"; width: parent.width
                 target: game.currentRound; property: "eastHandScore"
+                name: game.eastPlayer;
             }
             ScoreInput {
                 id: playerSouth; icon: "south.svg"; width: parent.width
                 winner: true
                 target: game.currentRound; property: "southHandScore"
+                name: game.southPlayer;
             }
             ScoreInput {
                 id: playerWest; icon: "west.svg"; width: parent.width
                 target: game.currentRound; property: "westHandScore"
+                name: game.westPlayer;
             }
             ScoreInput {
                 id: playerNorth; icon: "north.svg"; width: parent.width
                 target: game.currentRound; property: "northHandScore"
+                name: game.northPlayer;
             }
             // TODO: elliminate this spacer somehow
             Item {height: globalStyle.margins; width: parent.width}

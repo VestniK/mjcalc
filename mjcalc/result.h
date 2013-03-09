@@ -47,6 +47,8 @@ public:
     int operator[] (Wind player) const;
     int &operator[] (Wind player);
 
+    size_t playerPos(Wind player) const;
+
 private:
     int scores[playersCount];
     size_t winner;
