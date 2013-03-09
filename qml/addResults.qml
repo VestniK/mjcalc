@@ -1,7 +1,7 @@
 import QtQuick 1.0
 
 Background {
-    Style {id: style}
+    Style {id: globalStyle}
     Flickable {
         anchors {
             fill: parent
@@ -10,7 +10,7 @@ Background {
         contentHeight: childrenRect.height
 
         Column {
-            spacing: style.margins
+            spacing: globalStyle.margins
             width: parent.width
             ScoreInput {
                 id: playerEast; icon: "east.svg"; width: parent.width
@@ -30,7 +30,7 @@ Background {
                 target: game.currentRound; property: "northHandScore"
             }
             // TODO: elliminate this spacer somehow
-            Item {height: style.margins; width: parent.width}
+            Item {height: globalStyle.margins; width: parent.width}
             TextButton {
                 id: button; width: parent.width/2; text: qsTr("Add")
                 anchors.horizontalCenter: parent.horizontalCenter

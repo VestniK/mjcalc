@@ -6,7 +6,7 @@ Item {
     property alias text: name.text
     property alias icon: image.source
 
-    opacity: style.inputOpacity
+    opacity: globalStyle.inputOpacity
     height: childrenRect.height
 
     Image {
@@ -14,7 +14,7 @@ Item {
         anchors {
             top: parent.top
             left: parent.left
-            margins: style.margins
+            margins: globalStyle.margins
         }
         height: name.height
         fillMode: Image.PreserveAspectFit
@@ -26,7 +26,7 @@ Item {
             top: parent.top
             left: image.right
             right: parent.right
-            margins: style.margins
+            margins: globalStyle.margins
         }
     }
     Binding {

@@ -8,14 +8,14 @@ Item {
     property alias winner: iconBG.visible
 
     height: childrenRect.height
-    opacity: style.inputOpacity
+    opacity: globalStyle.inputOpacity
 
     Image {
         id: iconImg
         anchors {
             top: parent.top
             left: parent.left
-            margins: style.margins
+            margins: globalStyle.margins
         }
         z: 1
         height: score.height
@@ -27,7 +27,7 @@ Item {
         anchors {
             top: parent.top
             left: parent.left
-            margins: style.margins
+            margins: globalStyle.margins
         }
         source: "winner.svg"
         height: iconImg.height
@@ -43,7 +43,7 @@ Item {
             top: parent.top
             left: iconImg.right
             right: parent.right
-            margins: style.margins
+            margins: globalStyle.margins
         }
         validator: IntValidator {bottom: 0; top: 1000000;}
     }

@@ -15,11 +15,11 @@ Rectangle {
             left: parent.left
             right: parent.right
             top: parent.top
-            margins: style.margins
+            margins: globalStyle.margins
         }
         id: inputArea
-        font.family: style.labelFont
-        font.pointSize: style.labelFontSize
+        font.family: globalStyle.labelFont
+        font.pointSize: globalStyle.labelFontSize
         color: "black"
         focus: true
     }

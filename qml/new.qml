@@ -1,7 +1,7 @@
 import QtQuick 1.0
 
 Background {
-    Style {id: style}
+    Style {id: globalStyle}
     Flickable {
         anchors {
             fill: parent
@@ -10,7 +10,7 @@ Background {
         contentHeight: childrenRect.height
 
         Column {
-            spacing: style.margins
+            spacing: globalStyle.margins
             width: parent.width
             NameInput {
                 width: parent.width
@@ -37,7 +37,7 @@ Background {
                 property: "player4"
             }
             // TODO: elliminate this spacer somehow
-            Item {height: style.margins; width: parent.width}
+            Item {height: globalStyle.margins; width: parent.width}
             TextButton {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: qsTr("Start")
