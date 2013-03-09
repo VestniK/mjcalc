@@ -40,7 +40,7 @@ public:
     Result();
 
     void addScores(int totals[playersCount]) const;
-    size_t getNextEast() const;
+    size_t prepareNextRound();
     void setWinner(Wind wind);
     Wind winnerWind() const;
 

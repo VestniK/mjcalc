@@ -75,7 +75,7 @@ signals:
 private:
     QString mPlayers[mjcalc::playersCount];
     Round *mCurrentRound;
-
+    QList<mjcalc::Result> mResults;
 };
 
 #endif // GAME_H

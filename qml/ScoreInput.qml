@@ -2,16 +2,18 @@ import QtQuick 1.0
 
 Item {
     property string name: ""
-    property alias icon: iconImg.source
+    property alias icon: icon.source
     property alias text: score.text
     property alias target: binding.target
     property alias property: binding.property
-    property alias winner: iconBG.visible
+    property alias iconRect: icon.childrenRect
 
     height: score.height + nameLbl.height + 3*globalStyle.margins
 
+    signal selected()
+
     Image {
-        id: iconImg
+        id: icon
         anchors {
             verticalCenter: parent.verticalCenter
             left: parent.left
@@ -21,19 +23,11 @@ Item {
         height: score.height + nameLbl.height
         fillMode: Image.PreserveAspectFit
         smooth: true
-    }
-    Image {
-        id: iconBG
-        anchors {
-            verticalCenter: parent.verticalCenter
-            left: parent.left
-            margins: globalStyle.margins
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: parent.parent.selected()
         }
-        source: "winner.svg"
-        height: iconImg.height
-        fillMode: Image.PreserveAspectFit
-        smooth: true
-        visible: false
     }
 
     Text {
@@ -45,7 +39,7 @@ Item {
         text: parent.name + ":"
         anchors {
             top: parent.top
-            left: iconImg.right
+            left: icon.right
             right: parent.right
             margins: globalStyle.margins
         }
@@ -57,7 +51,7 @@ Item {
         opacity: globalStyle.inputOpacity
         anchors {
             top: nameLbl.bottom
-            left: iconImg.right
+            left: icon.right
             right: parent.right
             margins: globalStyle.margins
         }

@@ -45,14 +45,17 @@ void Result::addScores(int totals[playersCount]) const
     }
 }
 
-size_t Result::getNextEast() const
+size_t Result::prepareNextRound()
 {
-    return winner == eastPlayer ? eastPlayer : (eastPlayer + 1)%playersCount;
+    eastPlayer = winner == eastPlayer ? eastPlayer : (eastPlayer + 1)%playersCount;
+    winner = static_cast<size_t>(Unspecified);
+    for (size_t pos = 0; pos < mjcalc::playersCount; ++pos)
+        scores[pos] = 0;
 }
 
 void Result::setWinner(Wind wind)
 {
-    if (wind == Unspecified) {
+    if (wind < East || wind > North) {
         winner = static_cast<size_t>(Unspecified);
         return;
     }

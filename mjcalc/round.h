@@ -24,13 +24,11 @@
 
 #include "result.h"
 
-using namespace mjcalc;
-
 class Round : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(Round)
-    Q_PROPERTY(Wind winner READ winner WRITE setWinner)
+    Q_PROPERTY(int winner READ winner WRITE setWinner)
     Q_PROPERTY(int eastHandScore READ eastHandScore WRITE setEastHandScore)
     Q_PROPERTY(int southHandScore READ southHandScore WRITE setSouthHandScore)
     Q_PROPERTY(int westHandScore READ westHandScore WRITE setWestHandScore)
@@ -39,16 +37,17 @@ public:
     virtual ~Round();
     explicit Round(QObject *parent = 0);
 
-    mjcalc::Wind winner() const;
+    int winner() const;
     int eastHandScore() const;
     int southHandScore() const;
     int westHandScore() const;
     int northHandScore() const;
 
+    void startNext();
     const mjcalc::Result &result() const {return mResult;}
 
 public slots:
-    void setWinner(mjcalc::Wind val);
+    void setWinner(int val);
     void setEastHandScore(int val);
     void setSouthHandScore(int val);
     void setWestHandScore(int val);

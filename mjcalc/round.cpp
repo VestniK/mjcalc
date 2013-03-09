@@ -48,7 +48,7 @@ int Round::northHandScore() const
     return mResult[mjcalc::North];
 }
 
-mjcalc::Wind Round::winner() const
+int Round::winner() const
 {
     return mResult.winnerWind();
 }
@@ -73,7 +73,12 @@ void Round::setNorthHandScore(int val)
     mResult[mjcalc::North] = val;
 }
 
-void Round::setWinner(mjcalc::Wind val)
+void Round::setWinner(int val)
 {
-    mResult.setWinner(val);
+    mResult.setWinner(static_cast<mjcalc::Wind>(val));
+}
+
+void Round::startNext()
+{
+    mResult.prepareNextRound();
 }
