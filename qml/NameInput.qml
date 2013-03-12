@@ -6,7 +6,6 @@ Item {
     property alias text: name.text
     property alias icon: image.source
 
-    opacity: globalStyle.inputOpacity
     height: childrenRect.height
 
     Image {

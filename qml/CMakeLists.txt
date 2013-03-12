@@ -10,6 +10,7 @@ set(QMLS
 # Reusable combinations
   ScoreInput.qml
   NameInput.qml
+  ResultsRow.qml
 # Global UI style constants
   Style.qml
 # Images

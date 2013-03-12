@@ -4,10 +4,11 @@ Rectangle {
     property alias validator: inputArea.validator
     property alias text: inputArea.text
 
-    border.color: "black"
-    border.width: 1
-    radius: 5
-    color: "white"
+    border.color: globalStyle.textArea.borderColor
+    border.width: globalStyle.textArea.borderWidth
+    radius: globalStyle.textArea.borderRadius
+    color: globalStyle.textArea.bgColor
+    opacity: globalStyle.textArea.opacity
     height: childrenRect.height + inputArea.anchors.topMargin + inputArea.anchors.bottomMargin
 
     TextInput {

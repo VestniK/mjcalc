@@ -48,7 +48,6 @@ Item {
     LineEdit {
         id: score
         text: "0"
-        opacity: globalStyle.inputOpacity
         anchors {
             top: nameLbl.bottom
             left: icon.right
