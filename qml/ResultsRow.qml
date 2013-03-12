@@ -5,6 +5,7 @@ Item {
     property alias column2: col2.text
     property alias column3: col3.text
     property alias column4: col4.text
+    height: childrenRect.height
     Text {
         id: col1
         text: "0"

@@ -37,14 +37,8 @@ void Game::start()
 
 void Game::addScore()
 {
-    mResults.append(mCurrentRound->result());
+    mResults.addRoundResults(mCurrentRound->result());
     mCurrentRound->startNext();
-    int totals[mjcalc::playersCount] = {0, 0, 0, 0};
-    /// @todo show this results to the user
-    foreach (const mjcalc::Result & res, mResults) {
-        res.addScores(totals);
-        qDebug("%d, %d, %d, %d", totals[0], totals[1], totals[2], totals[3]);
-    }
     emit showMainPage();
 }
 

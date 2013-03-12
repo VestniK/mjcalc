@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.6)
 
 set(mjcalc_SRCS
+  resultstorage.cpp
   mjcalcview.cpp
   game.cpp
   round.cpp
@@ -8,6 +9,7 @@ set(mjcalc_SRCS
   result.cpp
 )
 set(mjcalc_MOC_HDRS
+  resultstorage.h
   mjcalcview.h
   game.h
   round.h

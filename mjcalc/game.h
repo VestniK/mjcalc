@@ -24,6 +24,7 @@
 #include <QtCore/QString>
 
 #include "round.h"
+#include "resultstorage.h"
 
 class Game : public QObject
 {
@@ -41,6 +42,7 @@ class Game : public QObject
     Q_PROPERTY(QString northPlayer READ northPlayer CONSTANT)
     // Current round
     Q_PROPERTY(QObject *currentRound READ currentRound CONSTANT)
+    Q_PROPERTY(QObject *results READ results CONSTANT)
 
 public:
     explicit Game(QObject *parent = 0);
@@ -57,6 +59,7 @@ public:
     const QString &northPlayer() const;
 
     Round *currentRound() {return mCurrentRound;}
+    QAbstractItemModel *results() {return &mResults;}
 
 public slots:
     void setPlayer1(const QString &val) {mPlayers[0] = val;}
@@ -75,7 +78,7 @@ signals:
 private:
     QString mPlayers[mjcalc::playersCount];
     Round *mCurrentRound;
-    QList<mjcalc::Result> mResults;
+    ResultStorage mResults;
 };
 
 #endif // GAME_H

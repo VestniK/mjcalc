@@ -46,12 +46,32 @@ Background {
         }
 
         ResultsRow {
+            id: header
             anchors {
                 margins: globalStyle.margins
                 left: parent.left
                 right: parent.right
             }
             column1: game.player1; column2: game.player2; column3: game.player3; column4: game.player4;
+        }
+        ListView {
+            anchors {
+                margins: globalStyle.margins
+                left: parent.left
+                right: parent.right
+                top: header.bottom
+                bottom: parent.bottom
+            }
+            clip: true
+            model: game.results
+            delegate: ResultsRow {
+                anchors {
+                    margins: globalStyle.margins
+                    left: parent.left
+                    right: parent.right
+                }
+                column1: totals1; column2: totals2; column3: totals3; column4: totals4;
+            }
         }
     }
 }
