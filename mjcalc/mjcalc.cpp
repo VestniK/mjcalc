@@ -25,6 +25,5 @@ int main(int argc, char **argv)
     QObject::connect(&game, SIGNAL(showMainPage()), &wnd, SLOT(showMainPage()), Qt::QueuedConnection);
 
     wnd.showNewPage();
-    wnd.show();
     return app.exec();
 }

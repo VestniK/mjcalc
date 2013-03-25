@@ -38,14 +38,17 @@ MjCalcView::~MjCalcView()
 void MjCalcView::showNewPage()
 {
     setSource(QUrl::fromLocalFile(QFileInfo("qml:new.qml").absoluteFilePath()));
+    showFullScreen();
 }
 
 void MjCalcView::showAddScores()
 {
     setSource(QUrl::fromLocalFile(QFileInfo("qml:addResults.qml").absoluteFilePath()));
+    showFullScreen();
 }
 
 void MjCalcView::showMainPage()
 {
     setSource(QUrl::fromLocalFile(QFileInfo("qml:main.qml").absoluteFilePath()));
+    showFullScreen();
 }
