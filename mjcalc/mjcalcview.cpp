@@ -22,6 +22,17 @@
 #include <QtCore/QFileInfo>
 #include <QtCore/QUrl>
 
+#include <QtGui/QApplication>
+
+static QUrl getResource(const QString &name)
+{
+#ifdef BLACKBERRY
+    return QUrl::fromLocalFile(QFileInfo("app/native/share/mjcalc/" + name).absoluteFilePath());
+#else
+    return QUrl::fromLocalFile(QFileInfo(qApp->applicationDirPath() + "/../share/mjcalc/" + name).absoluteFilePath());
+#endif
+}
+
 MjCalcView::MjCalcView(QWidget* parent): QDeclarativeView(parent)
 {
     setAttribute(Qt::WA_OpaquePaintEvent);
@@ -37,18 +48,18 @@ MjCalcView::~MjCalcView()
 
 void MjCalcView::showNewPage()
 {
-    setSource(QUrl::fromLocalFile(QFileInfo("qml:new.qml").absoluteFilePath()));
+    setSource(getResource("new.qml"));
     showFullScreen();
 }
 
 void MjCalcView::showAddScores()
 {
-    setSource(QUrl::fromLocalFile(QFileInfo("qml:addResults.qml").absoluteFilePath()));
+    setSource(getResource("addResults.qml"));
     showFullScreen();
 }
 
 void MjCalcView::showMainPage()
 {
-    setSource(QUrl::fromLocalFile(QFileInfo("qml:main.qml").absoluteFilePath()));
+    setSource(getResource("main.qml"));
     showFullScreen();
 }

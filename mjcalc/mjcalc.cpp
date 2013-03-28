@@ -12,10 +12,6 @@ int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
 
-    QDir::addSearchPath(
-        "qml",
-        app.applicationDirPath() + "/../share/mjcalc"
-    );
     Game game;
     MjCalcView wnd;
     wnd.rootContext()->setContextProperty("game", &game);
