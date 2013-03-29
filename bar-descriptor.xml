@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<qnx xmlns="http://www.qnx.com/schemas/application/1.0">
+
+    <id>ru.vestnik.mjcalc</id>
+    <name>Mahjong Calculator
+        <text xml:lang="ru_RU">Маджонг Калкулятор</text>
+    </name>
+    <description>Calculator for traditional mahjong game
+        <text xml:lang="ru_RU">Калкулятор для традиционного маджонга</text>
+    </description>
+
+    <versionNumber>1.0.0</versionNumber>
+    <buildId>1</buildId>
+
+    <!-- <copyright></copyright> -->
+
+    <author>VestniK</author>
+    <authorId>gYAAgMGNgQJg_WGWOZq9SCAFV_8</authorId>
+
+    <initialWindow>
+        <autoOrients>true</autoOrients>
+        <systemChrome>none</systemChrome>
+        <transparent>false</transparent>
+    </initialWindow>
+
+    <category>core.games</category>
+    <asset path="${BUILD_DIR}/icon.png">icon.png</asset>
+    <asset path="${BUILD_DIR}/bin/mjcalc" entry="true" type="Qnx/Elf">bin/mjcalc</asset>
+    <asset path="${BUILD_DIR}/share">share</asset>
+<!-- Qt4 required libs -->
+    <asset path="${QT4_DIR}/lib/libQtCore.so.4">lib/libQtCore.so.4</asset>
+    <asset path="${QT4_DIR}/lib/libQtGui.so.4">lib/libQtGui.so.4</asset>
+    <asset path="${QT4_DIR}/lib/libQtDeclarative.so.4">lib/libQtDeclarative.so.4</asset>
+    <asset path="${QT4_DIR}/lib/libQtScript.so.4">lib/libQtScript.so.4</asset>
+    <asset path="${QT4_DIR}/lib/libQtOpenGL.so.4">lib/libQtOpenGL.so.4</asset>
+    <asset path="${QT4_DIR}/lib/libQtNetwork.so.4">lib/libQtNetwork.so.4</asset>
+    <asset path="${QT4_DIR}/lib/libQtSvg.so.4">lib/libQtSvg.so.4</asset>
+    <asset path="${QT4_DIR}/lib/libQtXml.so.4">lib/libQtXml.so.4</asset>
+    <asset path="${QT4_DIR}/lib/libQtXmlPatterns.so.4">lib/libQtXmlPatterns.so.4</asset>
+    <asset path="${QT4_DIR}/lib/libQtSql.so.4">lib/libQtSql.so.4</asset>
+    <asset path="${QT4_DIR}/plugins/platforms/libblackberry.so">lib/plugins/platforms/libblackberry.so</asset>
+    <asset path="${QT4_DIR}/plugins/imageformats/libqsvg.so">lib/plugins/imageformats/libqsvg.so</asset>
+
+    <icon>
+        <image>icon.png</image>
+    </icon>
+
+    <action system="true">run_native</action>
+
+    <env var="LD_LIBRARY_PATH" value="app/native/lib"/>
+    <env var="QT_QPA_PLATFORM_PLUGIN_PATH" value="app/native/lib/plugins/platforms"/>
+    <env var="QT_QPA_FONTDIR" value="/usr/fonts/font_repository/liberation"/>
+    <env var="QT_PLUGIN_PATH" value="app/native/lib/plugins"/>
+
+</qnx>
