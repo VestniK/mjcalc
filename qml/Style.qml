@@ -11,9 +11,9 @@ QtObject {
     }
 
     property string labelFont: "Helvetica"
-    property double labelFontSize: 14
+    property double labelFontSize: 20
     property string descriptionFont: "Helvetica"
-    property double descriptionFontSize: 10
+    property double descriptionFontSize: 16
     property bool descriptionItalic: true
     property bool descriptionBold: false
 }
