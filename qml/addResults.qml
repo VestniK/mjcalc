@@ -39,6 +39,7 @@ Background {
                 target: game.currentRound; property: "eastHandScore"
                 name: game.eastPlayer; z: 1
                 onSelected: {game.currentRound.setWinner(0); winnerMark.state = "East";}
+                focus: true
             }
             ScoreInput {
                 id: playerSouth; icon: "south.svg"; width: parent.width

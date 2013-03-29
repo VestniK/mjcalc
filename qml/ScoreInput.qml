@@ -55,6 +55,7 @@ Item {
             margins: globalStyle.margins
         }
         validator: IntValidator {bottom: 0; top: 1000000;}
+        focus: parent.focus
     }
 
     Binding {
