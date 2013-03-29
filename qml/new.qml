@@ -17,6 +17,7 @@ Background {
                 icon: "east.svg"
                 target: game
                 property: "player1"
+                focus: true
             }
             NameInput {
                 width: parent.width

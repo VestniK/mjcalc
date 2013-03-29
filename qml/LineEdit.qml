@@ -22,6 +22,6 @@ Rectangle {
         font.family: globalStyle.labelFont
         font.pointSize: globalStyle.labelFontSize
         color: "black"
-        focus: true
+        focus: parent.focus
     }
 }

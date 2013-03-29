@@ -27,6 +27,7 @@ Item {
             right: parent.right
             margins: globalStyle.margins
         }
+        focus: parent.focus
     }
     Binding {
         id: binding
