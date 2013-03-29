@@ -23,5 +23,13 @@ Rectangle {
         font.pointSize: globalStyle.labelFontSize
         color: "black"
         focus: parent.focus
+        Timer {
+            id: onFocusSelectDelayer; interval: 100; repeat: false; triggeredOnStart: false
+            onTriggered: {inputArea.selectAll()}
+        }
+        onActiveFocusChanged: {
+            if (activeFocus == true)
+                onFocusSelectDelayer.start();
+        }
     }
 }
