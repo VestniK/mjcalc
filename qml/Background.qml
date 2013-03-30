@@ -1,4 +1,4 @@
-import QtQuick 1.0
+import QtQuick 1.1
 
 Rectangle {
     gradient: Gradient {
@@ -14,5 +14,13 @@ Rectangle {
         width: parent.width/2
         fillMode: Image.PreserveAspectFit
         smooth: true
+    }
+
+    property variant msgBox: messageBox
+    MessageBox {
+        id: messageBox
+        anchors.centerIn: parent
+        z: 1.0
+        visible: false;
     }
 }

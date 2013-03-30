@@ -7,6 +7,7 @@ set(QMLS
   Background.qml
   TextButton.qml
   LineEdit.qml
+  MessageBox.qml
 # Reusable combinations
   ScoreInput.qml
   NameInput.qml
