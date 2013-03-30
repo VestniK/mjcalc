@@ -1,6 +1,7 @@
 import QtQuick 1.0
 
 Background {
+    id: canvas
     Style {id: globalStyle}
     Flickable {
         anchors {
@@ -70,6 +71,16 @@ Background {
                     if (playerSouth.text.length == 0) playerSouth.text = "0";
                     if (playerWest.text.length == 0) playerWest.text = "0";
                     if (playerNorth.text.length == 0) playerNorth.text = "0";
+                    if (playerEast.text%2 != 0 || playerSouth.text%2 != 0 || playerWest.text%2 != 0 || playerNorth.text%2 != 0) {
+                        canvas.msgBox.text = qsTr("Some players have odd hand score.");
+                        canvas.msgBox.visible = true;
+                        return;
+                    }
+                    if (winnerMark.state == "Unspecified") {
+                        canvas.msgBox.text = qsTr("Select round winner.");
+                        canvas.msgBox.visible = true;
+                        return;
+                    }
                     game.addScore();
                 }
             }
