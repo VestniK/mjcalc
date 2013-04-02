@@ -5,8 +5,8 @@
 
 #include <QtDeclarative/QDeclarativeContext>
 
-#include "game.h"
-#include "mjcalcview.h"
+#include <mjcalc/game.h>
+#include <mjcalc/mjcalcview.h>
 
 int main(int argc, char **argv)
 {

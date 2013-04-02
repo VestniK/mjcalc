@@ -10,6 +10,9 @@ include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR} ${mjcalc_SOURCE_D
 add_subdirectory(mjcalc)
 add_subdirectory(qml)
 
+add_executable(mjcalc mjcalc.cpp)
+target_link_libraries(mjcalc ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTDECLARATIVE_LIBRARY} MjcalcEngine)
+
 if (BLACKBERRY)
   find_program(RSVG_CONVERT NAMES rsvg-convert)
   find_program(BB_PACKAGER NAMES blackberry-nativepackager)
