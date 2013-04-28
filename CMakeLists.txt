@@ -11,8 +11,8 @@ include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR} ${mjcalc_SOURCE_D
 add_subdirectory(mjcalc)
 add_subdirectory(qml)
 
-add_executable(mjcalc mjcalc.cpp)
-target_link_libraries(mjcalc ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTDECLARATIVE_LIBRARY} MjcalcEngine)
+add_executable(mj-calc mjcalc.cpp)
+target_link_libraries(mj-calc ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTDECLARATIVE_LIBRARY} MjcalcEngine)
 
 if (BLACKBERRY)
   find_program(RSVG_CONVERT NAMES rsvg-convert)
@@ -29,7 +29,7 @@ if (BLACKBERRY)
     set(DEV_FLAGS -devMode -debugToken ${DEBUG_TOKEN})
   endif("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
 
-  add_custom_command(OUTPUT mjcalc.bar DEPENDS icon.png mjcalc ${CMAKE_CURRENT_SOURCE_DIR}/bar-descriptor.xml
+  add_custom_command(OUTPUT mjcalc.bar DEPENDS icon.png mj-calc ${CMAKE_CURRENT_SOURCE_DIR}/bar-descriptor.xml
     COMMAND ${BB_PACKAGER} -package ${CMAKE_CURRENT_BINARY_DIR}/mjcalc.bar -D BUILD_DIR=${CMAKE_CURRENT_BINARY_DIR} -D QT4_DIR=$ENV{QT_DIR} ${DEV_FLAGS} ${CMAKE_CURRENT_SOURCE_DIR}/bar-descriptor.xml
   )
   add_custom_target(package DEPENDS mjcalc.bar)

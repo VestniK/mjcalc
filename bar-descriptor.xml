@@ -25,7 +25,7 @@
 
     <category>core.games</category>
     <asset path="${BUILD_DIR}/icon.png">icon.png</asset>
-    <asset path="${BUILD_DIR}/bin/mjcalc" entry="true" type="Qnx/Elf">bin/mjcalc</asset>
+    <asset path="${BUILD_DIR}/bin/mj-calc" entry="true" type="Qnx/Elf">bin/mj-calc</asset>
     <asset path="${BUILD_DIR}/share">share</asset>
 <!-- Qt4 required libs -->
     <asset path="${QT4_DIR}/lib/libQtCore.so.4">lib/libQtCore.so.4</asset>
