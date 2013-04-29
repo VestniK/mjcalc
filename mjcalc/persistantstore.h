@@ -17,41 +17,30 @@
  *
  */
 
-#ifndef RESULTSTORAGE_H
-#define RESULTSTORAGE_H
+#ifndef PERSISTANTSTORE_H
+#define PERSISTANTSTORE_H
 
-#include <QtCore/QAbstractListModel>
+#include <QtCore/QtGlobal>
+#include <QtCore/QString>
 #include <QtCore/QList>
-#include <QtCore/QVariant>
 
-#include "result.h"
+#include <mjcalc/result.h>
 
-class ResultStorage : public QAbstractListModel
+namespace mjcalc {
+
+class PersistantStore
 {
-    Q_OBJECT
-    Q_DISABLE_COPY(ResultStorage)
-
+    Q_DISABLE_COPY(PersistantStore)
 public:
-    enum Roles {
-        totals1 = Qt::UserRole + 1,
-        totals2,
-        totals3,
-        totals4
-    };
+    PersistantStore();
+    ~PersistantStore();
 
-    explicit ResultStorage(QObject *parent = 0);
-    virtual ~ResultStorage();
-
-    virtual QVariant data(const QModelIndex& index, int role) const;
-    virtual int rowCount(const QModelIndex& parent) const;
-
-    void clear();
-    void addRoundResults(const mjcalc::Result &score);
-
-    void setResults(const QList<mjcalc::Result> &res);
-
-private:
-    QList<mjcalc::Result> mResults;
+    void reset(const QString players[playersCount]);
+    void loadNames(QString players[playersCount]) const;
+    void storeResult(const Result &res);
+    void loadResults(QList<Result> &dest) const;
 };
 
-#endif // RESULTSTORAGE_H
+} // namespace mjcalc
+
+#endif // PERSISTANTSTORE_H

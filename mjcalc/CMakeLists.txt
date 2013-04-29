@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.6)
 
 set(mjcalc_SRCS
+  persistantstore.cpp
   resultstorage.cpp
   mjcalcview.cpp
   game.cpp

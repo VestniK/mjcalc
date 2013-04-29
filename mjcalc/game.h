@@ -25,6 +25,7 @@
 
 #include "round.h"
 #include "resultstorage.h"
+#include <mjcalc/persistantstore.h>
 
 class Game : public QObject
 {
@@ -45,7 +46,7 @@ class Game : public QObject
     Q_PROPERTY(QObject *results READ results CONSTANT)
 
 public:
-    explicit Game(QObject *parent = 0);
+    explicit Game(mjcalc::PersistantStore *store, QObject *parent = 0);
     virtual ~Game();
 
     const QString &player1() const {return mPlayers[0];}
@@ -79,6 +80,7 @@ private:
     QString mPlayers[mjcalc::playersCount];
     Round *mCurrentRound;
     ResultStorage mResults;
+    mjcalc::PersistantStore *mStore;
 };
 
 #endif // GAME_H

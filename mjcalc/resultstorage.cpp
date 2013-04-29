@@ -68,3 +68,8 @@ void ResultStorage::addRoundResults(const mjcalc::Result &score)
 {
     mResults.append(score);
 }
+
+void ResultStorage::setResults(const QList<mjcalc::Result> &res)
+{
+    mResults = res;
+}

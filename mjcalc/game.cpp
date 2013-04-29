@@ -24,20 +24,26 @@ Game::~Game()
 {
 }
 
-Game::Game(QObject *parent): QObject(parent)
+Game::Game(mjcalc::PersistantStore *store, QObject *parent): QObject(parent), mStore(store)
 {
     mCurrentRound = new Round(this);
+    mStore->loadNames(mPlayers);
+    QList<mjcalc::Result> storedResults;
+    mStore->loadResults(storedResults);
+    mResults.setResults(storedResults);
 }
 
 void Game::start()
 {
     mResults.clear();
+    mStore->reset(mPlayers);
     emit showMainPage();
 }
 
 void Game::addScore()
 {
     mResults.addRoundResults(mCurrentRound->result());
+    mStore->storeResult(mCurrentRound->result());
     mCurrentRound->startNext();
     emit showMainPage();
 }

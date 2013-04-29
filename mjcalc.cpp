@@ -7,12 +7,14 @@
 
 #include <mjcalc/game.h>
 #include <mjcalc/mjcalcview.h>
+#include <mjcalc/persistantstore.h>
 
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
 
-    Game game;
+    mjcalc::PersistantStore store;
+    Game game(&store);
     MjCalcView wnd;
     wnd.rootContext()->setContextProperty("game", &game);
 
