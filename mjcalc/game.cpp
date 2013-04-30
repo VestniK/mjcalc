@@ -27,9 +27,12 @@ Game::~Game()
 Game::Game(mjcalc::PersistantStore *store, QObject *parent): QObject(parent), mStore(store)
 {
     mCurrentRound = new Round(this);
-    mStore->loadNames(mPlayers);
     QList<mjcalc::Result> storedResults;
-    mStore->loadResults(storedResults);
+    if (!mStore->load(mPlayers, storedResults)) {
+        for (int i = 0; i < mjcalc::playersCount; ++i)
+            mPlayers[i].clear();
+        return;
+    }
     mResults.setResults(storedResults);
 }
 

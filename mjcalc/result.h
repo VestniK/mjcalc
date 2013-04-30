@@ -38,6 +38,7 @@ class Result
 {
 public:
     Result();
+    Result(int scores[playersCount], size_t winnerPos, size_t eastPos);
 
     void addScores(int totals[playersCount]) const;
     size_t prepareNextRound();
@@ -48,6 +49,9 @@ public:
     int &operator[] (Wind player);
 
     size_t playerPos(Wind player) const;
+    int score(size_t pos) const {return scores[pos];}
+    size_t winnerPos() const {return winner;}
+    size_t eastPos() const {return eastPlayer;}
 
 private:
     int scores[playersCount];

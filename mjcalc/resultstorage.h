@@ -43,7 +43,7 @@ public:
     virtual ~ResultStorage();
 
     virtual QVariant data(const QModelIndex& index, int role) const;
-    virtual int rowCount(const QModelIndex& parent) const;
+    virtual int rowCount(const QModelIndex& parent = QModelIndex()) const;
 
     void clear();
     void addRoundResults(const mjcalc::Result &score);

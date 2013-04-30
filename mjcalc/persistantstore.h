@@ -36,9 +36,8 @@ public:
     ~PersistantStore();
 
     void reset(const QString players[playersCount]);
-    void loadNames(QString players[playersCount]) const;
     void storeResult(const Result &res);
-    void loadResults(QList<Result> &dest) const;
+    bool load(QString players[playersCount], QList<Result> &dest) const;
 };
 
 } // namespace mjcalc

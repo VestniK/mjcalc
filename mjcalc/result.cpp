@@ -23,8 +23,14 @@ using namespace mjcalc;
 
 Result::Result(): eastPlayer(0), winner(static_cast<size_t>(Unspecified))
 {
-    for (size_t pos = 0; pos < mjcalc::playersCount; ++pos)
+    for (size_t pos = 0; pos < playersCount; ++pos)
         scores[pos] = 0;
+}
+
+Result::Result(int scores[playersCount], size_t winnerPos, size_t eastPos) : eastPlayer(eastPos), winner(winnerPos)
+{
+    for (size_t pos = 0; pos < playersCount; ++pos)
+        this->scores[pos] = scores[pos];
 }
 
 void Result::addScores(int totals[playersCount]) const

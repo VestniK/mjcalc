@@ -19,7 +19,23 @@
 
 #include "persistantstore.h"
 
+#include <QtCore/QDir>
+#include <QtCore/QFile>
+#include <QtCore/QDataStream>
+#include <QtCore/QString>
+
 namespace mjcalc {
+
+static const quint32 formatVer = 0;
+static const quint32 *namesSig = reinterpret_cast<const quint32 *>("name");
+static const quint32 *resultsSig = reinterpret_cast<const quint32 *>("rslt");
+static const quint32 *separatorSig = reinterpret_cast<const quint32 *>("endr");
+
+static inline
+QString getCacheFile()
+{
+    return QDir::home().absoluteFilePath(".mjcalc.cache");
+}
 
 PersistantStore::PersistantStore()
 {
@@ -29,22 +45,70 @@ PersistantStore::~PersistantStore()
 {
 }
 
-void PersistantStore::storeResult(const mjcalc::Result &res)
+void PersistantStore::storeResult(const Result &res)
 {
-
-}
-
-void PersistantStore::loadResults(QList<Result> &dest) const
-{
-
+    QFile cache(getCacheFile());
+    cache.open(QIODevice::Append | QIODevice::WriteOnly);
+    QDataStream stm(&cache);
+    stm.setVersion(QDataStream::Qt_4_8);
+    stm << quint32(res.winnerPos());
+    stm << quint32(res.eastPos());
+    for (size_t pos = 0; pos < playersCount; ++pos)
+        stm << qint32(res.score(pos));
+    stm << *separatorSig;
 }
 
 void PersistantStore::reset(const QString players[playersCount])
 {
+    QFile cache(getCacheFile());
+    cache.open(QIODevice::Truncate | QIODevice::WriteOnly);
+    QDataStream stm(&cache);
+    stm.setVersion(QDataStream::Qt_4_8);
+    stm << formatVer << *namesSig;
+    for (int i = 0; i < playersCount; ++i)
+        stm << players[i] << *separatorSig;
+    stm << *resultsSig;
 }
 
-void PersistantStore::loadNames(QString players[playersCount]) const
+bool PersistantStore::load(QString players[playersCount], QList<Result> &dest) const
 {
+    QFile cache(getCacheFile());
+    if (!cache.exists())
+        return false;
+    cache.open(QIODevice::ReadOnly);
+    QDataStream stm(&cache);
+    stm.setVersion(QDataStream::Qt_4_8);
+    quint32 meta;
+    stm >> meta;
+    if (meta != formatVer)
+        return false;
+    stm >> meta;
+    if (meta != *namesSig)
+        return false;
+    for (int i = 0; i < playersCount; ++i) {
+        stm >> players[i] >> meta;
+        if (meta != *separatorSig)
+            return false;
+    }
+    stm >> meta;
+    if (meta != *resultsSig)
+        return false;
+    forever {
+        quint32 winnerPos, eastPos;
+        stm >> winnerPos;
+        if (stm.status() == QDataStream::ReadPastEnd)
+            break;
+        stm >> eastPos;
+        qint32 scores[playersCount];
+        for (int i = 0; i < playersCount; ++i)
+            stm >> scores[i];
+        meta = 0;
+        stm >> meta;
+        if (meta != *separatorSig)
+            return false;
+        dest.append(Result(scores, winnerPos, eastPos));
+    }
+    return true;
 }
 
 } // namespace mjcalc
