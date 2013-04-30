@@ -34,6 +34,9 @@ Game::Game(mjcalc::PersistantStore *store, QObject *parent): QObject(parent), mS
         return;
     }
     mResults.setResults(storedResults);
+    mjcalc::Result next = storedResults.back();
+    next.prepareNextRound();
+    mCurrentRound->setResult(next);
 }
 
 void Game::start()

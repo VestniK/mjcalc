@@ -108,7 +108,7 @@ bool PersistantStore::load(QString players[playersCount], QList<Result> &dest) c
             return false;
         dest.append(Result(scores, winnerPos, eastPos));
     }
-    return true;
+    return !dest.empty();
 }
 
 } // namespace mjcalc

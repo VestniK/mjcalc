@@ -45,6 +45,7 @@ public:
 
     void startNext();
     const mjcalc::Result &result() const {return mResult;}
+    void setResult(const mjcalc::Result &val) {mResult = val;}
 
 public slots:
     void setWinner(int val);
