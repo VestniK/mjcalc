@@ -67,3 +67,8 @@ const QString& Game::northPlayer() const
 {
     return mPlayers[mCurrentRound->result().playerPos(mjcalc::North)];
 }
+
+bool Game::isEmpty() const
+{
+    return mResults.rowCount() == 0;
+}

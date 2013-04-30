@@ -22,6 +22,9 @@ int main(int argc, char **argv)
     QObject::connect(&game, SIGNAL(showNewPage()), &wnd, SLOT(showNewPage()), Qt::QueuedConnection);
     QObject::connect(&game, SIGNAL(showMainPage()), &wnd, SLOT(showMainPage()), Qt::QueuedConnection);
 
-    wnd.showNewPage();
+    if (game.isEmpty())
+        wnd.showNewPage();
+    else
+        wnd.showMainPage();
     return app.exec();
 }
