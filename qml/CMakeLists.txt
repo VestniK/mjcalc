@@ -21,6 +21,8 @@ set(QMLS
   west.svg
   north.svg
   winner.svg
+  normalHand.svg
+  deadHand.svg
 )
 
 foreach(_qml ${QMLS})

@@ -2,6 +2,7 @@ import QtQuick 1.0
 
 Item {
     property string name: ""
+    property bool deadHand: false
     property alias icon: icon.source
     property alias text: score.text
     property alias target: binding.target
@@ -51,11 +52,29 @@ Item {
         anchors {
             top: nameLbl.bottom
             left: icon.right
-            right: parent.right
+            right: handIcon.left
             margins: globalStyle.margins
         }
         validator: IntValidator {bottom: 0; top: 1000000;}
         focus: parent.focus
+    }
+
+    Image {
+        id: handIcon
+        anchors {
+            verticalCenter: parent.verticalCenter
+            right: parent.right
+            margins: globalStyle.margins
+        }
+        z: 1
+        height: score.height + nameLbl.height
+        fillMode: Image.PreserveAspectFit
+        smooth: true
+        source: parent.deadHand ? "deadHand.svg" : "normalHand.svg"
+        MouseArea {
+            anchors.fill: parent
+            onClicked: parent.parent.deadHand = !parent.parent.deadHand;
+        }
     }
 
     Binding {
