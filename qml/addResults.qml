@@ -37,26 +37,30 @@ Background {
             width: parent.width
             ScoreInput {
                 id: playerEast; icon: "east.svg"; width: parent.width
-                target: game.currentRound; property: "eastHandScore"
+                target: game.currentRound.eastHand; property: "score"
+                hand: game.currentRound.eastHand
                 name: game.eastPlayer; z: 1
                 onSelected: {game.currentRound.setWinner(0); winnerMark.state = "East";}
                 focus: true
             }
             ScoreInput {
                 id: playerSouth; icon: "south.svg"; width: parent.width
-                target: game.currentRound; property: "southHandScore"
+                target: game.currentRound.southHand; property: "score"
+                hand: game.currentRound.southHand
                 name: game.southPlayer; z: 1
                 onSelected: {game.currentRound.setWinner(1); winnerMark.state = "South";}
             }
             ScoreInput {
                 id: playerWest; icon: "west.svg"; width: parent.width
-                target: game.currentRound; property: "westHandScore"
+                target: game.currentRound.westHand; property: "score"
+                hand: game.currentRound.westHand
                 name: game.westPlayer; z: 1
                 onSelected: {game.currentRound.setWinner(2); winnerMark.state = "West";}
             }
             ScoreInput {
                 id: playerNorth; icon: "north.svg"; width: parent.width
-                target: game.currentRound; property: "northHandScore"
+                target: game.currentRound.northHand; property: "score"
+                hand: game.currentRound.northHand
                 name: game.northPlayer; z: 1
                 onSelected: {game.currentRound.setWinner(3); winnerMark.state = "North";}
             }

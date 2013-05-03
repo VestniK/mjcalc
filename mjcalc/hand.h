@@ -17,43 +17,35 @@
  *
  */
 
-#ifndef ROUND_H
-#define ROUND_H
+#ifndef HAND_H
+#define HAND_H
 
 #include <QtCore/QObject>
 
 #include <mjcalc/result.h>
-#include <mjcalc/hand.h>
 
-class Round : public QObject
+class Hand : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(Round)
-    Q_PROPERTY(int winner READ winner WRITE setWinner)
-    Q_PROPERTY(QObject *eastHand READ eastHand CONSTANT)
-    Q_PROPERTY(QObject *southHand READ southHand CONSTANT)
-    Q_PROPERTY(QObject *westHand READ westHand CONSTANT)
-    Q_PROPERTY(QObject *northHand READ northHand CONSTANT)
+    Q_DISABLE_COPY(Hand)
+    Q_PROPERTY(int score READ score WRITE setScore NOTIFY scoreChanged)
+    Q_PROPERTY(bool dead READ dead WRITE setDead NOTIFY stateChanged)
 public:
-    virtual ~Round();
-    explicit Round(QObject *parent = 0);
+    Hand(mjcalc::Result *res, mjcalc::Wind wind, QObject *parent = 0);
+    virtual ~Hand();
 
-    int winner() const;
-    Hand *eastHand();
-    Hand *southHand();
-    Hand *westHand();
-    Hand *northHand();
+    int score() const;
+    bool dead() const;
+    void setScore(int val);
+    void setDead(bool val);
 
-    void startNext();
-    const mjcalc::Result &result() const {return mResult;}
-    void setResult(const mjcalc::Result &val) {mResult = val;}
-
-public slots:
-    void setWinner(int val);
+signals:
+    void scoreChanged(int val);
+    void stateChanged(bool deadHand);
 
 private:
-    mjcalc::Result mResult;
-    Hand *hands[mjcalc::playersCount];
+    mjcalc::Result *result;
+    mjcalc::Wind wind;
 };
 
-#endif // RESULTCONTROLLER_H
+#endif // HAND_H

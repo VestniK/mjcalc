@@ -28,7 +28,7 @@ static const size_t playersCount = 4;
 
 enum Wind {
     Unspecified = -1,
-    East,
+    East = 0,
     South,
     West,
     North

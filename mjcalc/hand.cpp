@@ -17,50 +17,36 @@
  *
  */
 
-#include "round.h"
+#include "hand.h"
 
-Round::~Round()
+Hand::Hand(mjcalc::Result *res, mjcalc::Wind handWind, QObject *parent): QObject(parent), result(res), wind(handWind)
+{
+    Q_ASSERT(handWind != mjcalc::Unspecified);
+}
+
+Hand::~Hand()
 {
 }
 
-Round::Round(QObject *parent):
-    QObject(parent)
+int Hand::score() const
 {
-    for (int wind = mjcalc::East; wind <= mjcalc::North; ++wind)
-        hands[wind] = new Hand(&mResult, static_cast<mjcalc::Wind>(wind), this);
+    return (*result)[wind];
 }
 
-Hand* Round::eastHand()
+void Hand::setScore(int val)
 {
-    return hands[mjcalc::East];
+    (*result)[wind] = val;
+    emit scoreChanged(val);
 }
 
-Hand* Round::southHand()
+bool Hand::dead() const
 {
-    return hands[mjcalc::South];
+    /// @todo implement store this val in the result
+    return false;
 }
 
-Hand* Round::westHand()
+void Hand::setDead(bool val)
 {
-    return hands[mjcalc::West];
-}
-
-Hand* Round::northHand()
-{
-    return hands[mjcalc::North];
-}
-
-int Round::winner() const
-{
-    return mResult.winnerWind();
-}
-
-void Round::setWinner(int val)
-{
-    mResult.setWinner(static_cast<mjcalc::Wind>(val));
-}
-
-void Round::startNext()
-{
-    mResult.prepareNextRound();
+    Q_UNUSED(val);
+    /// @todo store val end emit signal
 }

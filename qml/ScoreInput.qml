@@ -2,11 +2,11 @@ import QtQuick 1.0
 
 Item {
     property string name: ""
-    property bool deadHand: false
+    property variant hand: null
     property alias icon: icon.source
     property alias text: score.text
-    property alias target: binding.target
-    property alias property: binding.property
+    property alias target: binding.target // TODO: find out why cant just use "target: parent.hand" in the binding
+    property alias property: binding.property // TODO: find out why cant just use "target: parent.hand" in the binding
     property alias iconRect: icon.childrenRect
 
     height: score.height + nameLbl.height + 3*globalStyle.margins
@@ -70,10 +70,10 @@ Item {
         height: score.height + nameLbl.height
         fillMode: Image.PreserveAspectFit
         smooth: true
-        source: parent.deadHand ? "deadHand.svg" : "normalHand.svg"
+        source: parent.hand.dead ? "deadHand.svg" : "normalHand.svg"
         MouseArea {
             anchors.fill: parent
-            onClicked: parent.parent.deadHand = !parent.parent.deadHand;
+            onClicked: parent.parent.hand.dead = !parent.parent.hand.dead;
         }
     }
 
