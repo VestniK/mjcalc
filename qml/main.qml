@@ -47,6 +47,7 @@ Background {
 
         ResultsRow {
             id: header
+            head: true
             anchors {
                 margins: globalStyle.margins
                 left: parent.left

@@ -5,6 +5,7 @@ Item {
     property alias column2: col2.text
     property alias column3: col3.text
     property alias column4: col4.text
+    property bool head: false
     height: childrenRect.height
     Text {
         id: col1
@@ -12,6 +13,7 @@ Item {
         anchors.left: parent.left
         anchors.top: parent.top
         width: parent.width/4
+        font.bold: parent.head
     }
     Text {
         id: col2
@@ -19,6 +21,7 @@ Item {
         anchors.left: col1.right
         anchors.top: parent.top
         width: parent.width/4
+        font.bold: parent.head
     }
     Text {
         id: col3
@@ -26,6 +29,7 @@ Item {
         anchors.left: col2.right
         anchors.top: parent.top
         width: parent.width/4
+        font.bold: parent.head
     }
     Text {
         id: col4
@@ -33,5 +37,6 @@ Item {
         anchors.left: col3.right
         anchors.top: parent.top
         width: parent.width/4
+        font.bold: parent.head
     }
 }
