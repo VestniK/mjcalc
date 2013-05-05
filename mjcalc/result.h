@@ -21,6 +21,7 @@
 #define MJCALC_ROUNDRESULT_H
 
 #include <sys/types.h>
+#include <cstdint>
 
 namespace mjcalc {
 
@@ -38,7 +39,7 @@ class Result
 {
 public:
     Result();
-    Result(int scores[playersCount], size_t winnerPos, size_t eastPos);
+    Result(int scores[playersCount], size_t winnerPos, size_t eastPos, uint8_t deadHandsMask);
 
     void addScores(int totals[playersCount]) const;
     size_t prepareNextRound();
@@ -47,16 +48,20 @@ public:
 
     int operator[] (Wind player) const;
     int &operator[] (Wind player);
+    void setDeadHand(Wind player, bool state);
+    bool isDeadHand(Wind player) const;
 
     size_t playerPos(Wind player) const;
     int score(size_t pos) const {return scores[pos];}
     size_t winnerPos() const {return winner;}
     size_t eastPos() const {return eastPlayer;}
+    uint8_t deadHandsMask() const {return deadHands;}
 
 private:
     int scores[playersCount];
     size_t winner;
     size_t eastPlayer;
+    uint8_t deadHands;
 };
 
 }

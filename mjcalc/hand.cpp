@@ -41,12 +41,12 @@ void Hand::setScore(int val)
 
 bool Hand::dead() const
 {
-    /// @todo implement store this val in the result
-    return false;
+    return result->isDeadHand(wind);
 }
 
 void Hand::setDead(bool val)
 {
-    Q_UNUSED(val);
-    /// @todo store val end emit signal
+    result->setDeadHand(wind, val);
+    qDebug("void Hand::setDeadHand(%s)", val ? "true" : "false");
+    emit stateChanged(val);
 }

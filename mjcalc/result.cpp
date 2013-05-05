@@ -21,13 +21,13 @@
 
 using namespace mjcalc;
 
-Result::Result(): eastPlayer(0), winner(static_cast<size_t>(Unspecified))
+Result::Result(): eastPlayer(0), winner(static_cast<size_t>(Unspecified)), deadHands(0)
 {
     for (size_t pos = 0; pos < playersCount; ++pos)
         scores[pos] = 0;
 }
 
-Result::Result(int scores[playersCount], size_t winnerPos, size_t eastPos) : eastPlayer(eastPos), winner(winnerPos)
+Result::Result(int scores[playersCount], size_t winnerPos, size_t eastPos, uint8_t deadHandsMask) : eastPlayer(eastPos), winner(winnerPos), deadHands(deadHandsMask)
 {
     for (size_t pos = 0; pos < playersCount; ++pos)
         this->scores[pos] = scores[pos];
@@ -55,6 +55,7 @@ size_t Result::prepareNextRound()
 {
     eastPlayer = winner == eastPlayer ? eastPlayer : (eastPlayer + 1)%playersCount;
     winner = static_cast<size_t>(Unspecified);
+    deadHands = 0;
     for (size_t pos = 0; pos < mjcalc::playersCount; ++pos)
         scores[pos] = 0;
 }
@@ -92,4 +93,20 @@ size_t Result::playerPos(Wind player) const
     if (player == Unspecified)
         return static_cast<size_t>(-1);
     return (eastPlayer + static_cast<size_t>(player))%playersCount;
+}
+
+void Result::setDeadHand(Wind player, bool state)
+{
+    assert(player != Unspecified);
+    uint8_t mask = 1 << playerPos(player);
+    if (state)
+        deadHands |= mask;
+    else
+        deadHands &= ~mask;
+}
+
+bool Result::isDeadHand(Wind player) const
+{
+    assert(player != Unspecified);
+    return (deadHands & (1 << playerPos(player))) != 0;
 }

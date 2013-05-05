@@ -55,6 +55,7 @@ void PersistantStore::storeResult(const Result &res)
     stm << quint32(res.eastPos());
     for (size_t pos = 0; pos < playersCount; ++pos)
         stm << qint32(res.score(pos));
+    stm << quint8(res.deadHandsMask());
     stm << *separatorSig;
 }
 
@@ -102,11 +103,13 @@ bool PersistantStore::load(QString players[playersCount], QList<Result> &dest) c
         qint32 scores[playersCount];
         for (int i = 0; i < playersCount; ++i)
             stm >> scores[i];
+        quint8 deadHands = 0;
+        stm >> deadHands;
         meta = 0;
         stm >> meta;
         if (meta != *separatorSig)
             return false;
-        dest.append(Result(scores, winnerPos, eastPos));
+        dest.append(Result(scores, winnerPos, eastPos, deadHands));
     }
     return !dest.empty();
 }
