@@ -1,0 +1,22 @@
+The following images are taken and reworked from default tilestet of the
+KMahjongg game http://games.kde.org/game.php?game=kmahjongg
+ * icon.svg
+ * qml/east.svg
+ * qml/south.svg
+ * qml/west.svg
+ * qml/north.svg
+ * qml/rdragon.svg
+Original copying information:
+===
+Copyright (C) 2006 Raquel Ravanini <raquel@tabuleiro.com>
+
+This tileset is free; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2 of
+the License, or (at your option) any later version.
+===
+
+The folowing images are taken and reworked from OpenClipArt
+http://openclipart.org/ and are in public domain
+ * qml/normalHand.svg
+ * qml/deadHand.svg
