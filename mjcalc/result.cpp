@@ -116,3 +116,18 @@ bool Result::isDeadHand(Wind player) const
     assert(player != Unspecified);
     return checkBit(deadHands, playerPos(player));
 }
+
+Result::State Result::state() const
+{
+    if (winner < 0 || winner >= playersCount)
+        return NoWinner;
+    for (size_t pos = 0; pos < playersCount; ++pos) {
+        if (scores[pos]%2 != 0)
+            return OddHand;
+    }
+    if (checkBit(deadHands, winner))
+        return WinnerIsDead;
+    if (scores[winner] < minWinnerScore)
+        return SmallWinnerHand;
+    return Ok;
+}

@@ -77,6 +77,8 @@ signals:
     void showAddScores();
     void showMainPage();
 
+    void scoresError(QString msg);
+
 private:
     QString mPlayers[mjcalc::playersCount];
     Round *mCurrentRound;

@@ -48,6 +48,13 @@ void Game::start()
 
 void Game::addScore()
 {
+    switch (mCurrentRound->result().state()) {
+        case mjcalc::Result::NoWinner: emit scoresError(tr("Winner is not specified.")); return;
+        case mjcalc::Result::OddHand: emit scoresError(tr("Some players have odd hand score.")); return;
+        case mjcalc::Result::WinnerIsDead: emit scoresError(tr("Winner is marked as dead hand.")); return;
+        case mjcalc::Result::SmallWinnerHand: emit scoresError(tr("Winner hand score is less then %1.").arg(mjcalc::minWinnerScore)); return;
+        case mjcalc::Result::Ok: break;
+    }
     qDebug(
         "Game::addScore(): e: %d; s:%d; w:%d; n:%d",
         mCurrentRound->result()[mjcalc::East],

@@ -27,6 +27,7 @@ class QDataStream;
 namespace mjcalc {
 
 static const size_t playersCount = 4;
+static const qint32 minWinnerScore = 20;
 
 enum Wind {
     Unspecified = -1,
@@ -52,6 +53,15 @@ public:
     bool isDeadHand(Wind player) const;
 
     size_t playerPos(Wind player) const;
+
+    enum State {
+        Ok,
+        NoWinner,
+        OddHand,
+        WinnerIsDead,
+        SmallWinnerHand
+    };
+    State state() const;
 
 private:
     qint32 scores[playersCount];
