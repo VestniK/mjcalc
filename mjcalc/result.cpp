@@ -21,6 +21,12 @@
 
 using namespace mjcalc;
 
+static inline
+bool checkBit(uint8_t bt, int bitPos)
+{
+    return (bt & (1 << bitPos)) != 0;
+}
+
 Result::Result(): eastPlayer(0), winner(static_cast<size_t>(Unspecified)), deadHands(0)
 {
     for (size_t pos = 0; pos < playersCount; ++pos)
@@ -37,7 +43,11 @@ void Result::addScores(int totals[playersCount]) const
 {
     assert(winner < playersCount);
     for (size_t i = 0; i < playersCount; ++i) {
+        if (checkBit(deadHands, i))
+            continue;
         for (size_t j = 0; j < i; ++j) {
+            if (checkBit(deadHands, j))
+                continue;
             int debt = scores[i] - scores[j];
             if (i == winner)
                 debt = scores[i];
@@ -108,5 +118,5 @@ void Result::setDeadHand(Wind player, bool state)
 bool Result::isDeadHand(Wind player) const
 {
     assert(player != Unspecified);
-    return (deadHands & (1 << playerPos(player))) != 0;
+    return checkBit(deadHands, playerPos(player));
 }
