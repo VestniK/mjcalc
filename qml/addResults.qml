@@ -100,12 +100,7 @@ Background {
         }
     }
 
-    function riseError(msg) {
-        canvas.msgBox.text = msg;
-        canvas.msgBox.visible = true;
-    }
-
     Component.onCompleted: {
-        game.scoresError.connect(riseError);
+        game.scoresError.connect(canvas.riseError);
     }
 }

@@ -35,11 +35,14 @@ Rectangle {
         smooth: true
     }
 
-    property variant msgBox: messageBox
     MessageBox {
         id: messageBox
         anchors.centerIn: parent
         z: 1.0
         visible: false;
+    }
+    function riseError(msg) {
+        messageBox.text = msg;
+        messageBox.visible = true;
     }
 }

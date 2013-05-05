@@ -68,8 +68,7 @@ Background {
                 text: qsTr("Start")
                 onButtonClick: {
                     if (eastName.text.length == 0 || southName.text.length == 0 || westName.text.length == 0 || northName.text.length == 0) {
-                        canvas.msgBox.visible = true;
-                        canvas.msgBox.text = qsTr("Some names are missing");
+                        canvas.riseError(qsTr("Some names are missing"));
                         return;
                     }
                     game.start()
