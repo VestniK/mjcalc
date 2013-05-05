@@ -24,26 +24,20 @@
 using namespace mjcalc;
 
 static inline
-bool checkBit(uint8_t bt, int bitPos)
+bool checkBit(quint8 bt, int bitPos)
 {
     return (bt & (1 << bitPos)) != 0;
 }
 
-Result::Result(): eastPlayer(0), winner(static_cast<size_t>(Unspecified)), deadHands(0)
+Result::Result(): eastPlayer(0), winner(static_cast<quint8>(Unspecified)), deadHands(0)
 {
     for (size_t pos = 0; pos < playersCount; ++pos)
         scores[pos] = 0;
 }
 
-Result::Result(int scores[playersCount], size_t winnerPos, size_t eastPos, uint8_t deadHandsMask) : eastPlayer(eastPos), winner(winnerPos), deadHands(deadHandsMask)
-{
-    for (size_t pos = 0; pos < playersCount; ++pos)
-        this->scores[pos] = scores[pos];
-}
-
 void Result::addScores(int totals[playersCount]) const
 {
-    assert(winner < playersCount);
+    assert(winner < playersCount && winner >= 0);
     for (size_t i = 0; i < playersCount; ++i) {
         if (checkBit(deadHands, i))
             continue;
@@ -63,10 +57,10 @@ void Result::addScores(int totals[playersCount]) const
     }
 }
 
-size_t Result::prepareNextRound()
+void Result::prepareNextRound()
 {
     eastPlayer = winner == eastPlayer ? eastPlayer : (eastPlayer + 1)%playersCount;
-    winner = static_cast<size_t>(Unspecified);
+    winner = static_cast<qint8>(Unspecified);
     deadHands = 0;
     for (size_t pos = 0; pos < mjcalc::playersCount; ++pos)
         scores[pos] = 0;
@@ -75,29 +69,29 @@ size_t Result::prepareNextRound()
 void Result::setWinner(Wind wind)
 {
     if (wind < East || wind > North) {
-        winner = static_cast<size_t>(Unspecified);
+        winner = static_cast<qint8>(Unspecified);
         return;
     }
-    winner = playerPos(wind);
+    winner = static_cast<qint8>(playerPos(wind));
 }
 
 Wind Result::winnerWind() const
 {
-    if (winner >= playersCount)
+    if (winner >= playersCount || winner < 0)
         return Unspecified;
     return static_cast<Wind>((playersCount + winner - eastPlayer)%playersCount);
 }
 
-int Result::operator[] (Wind player) const
+qint32 Result::operator[] (Wind player) const
 {
     assert(player != Unspecified);
     return scores[playerPos(player)];
 }
 
-int &Result::operator[] (Wind player)
+qint32 &Result::operator[] (Wind player)
 {
     assert(player != Unspecified);
-    return scores[(eastPlayer + player)%playersCount];
+    return scores[playerPos(player)];
 }
 
 size_t Result::playerPos(Wind player) const
@@ -110,7 +104,7 @@ size_t Result::playerPos(Wind player) const
 void Result::setDeadHand(Wind player, bool state)
 {
     assert(player != Unspecified);
-    uint8_t mask = 1 << playerPos(player);
+    quint8 mask = 1 << playerPos(player);
     if (state)
         deadHands |= mask;
     else

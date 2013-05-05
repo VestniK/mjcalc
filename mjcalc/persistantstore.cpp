@@ -27,9 +27,53 @@
 namespace mjcalc {
 
 static const quint32 formatVer = 0;
+static const quint8 resFormatVer = 0;
 static const quint32 *namesSig = reinterpret_cast<const quint32 *>("name");
 static const quint32 *resultsSig = reinterpret_cast<const quint32 *>("rslt");
 static const quint32 *separatorSig = reinterpret_cast<const quint32 *>("endr");
+
+QDataStream &operator<<(QDataStream &stm, const Result &res)
+{
+    qDebug(
+        "storing res: [%d, %d, %d, %d]; win: %d; east: %u; deads: %u",
+        res.scores[0], res.scores[1], res.scores[2], res.scores[3],
+        qint32(res.winner), quint32(res.eastPlayer), quint32(res.deadHands)
+    );
+    stm << resFormatVer;
+    stm << res.winner;
+    stm << res.eastPlayer;
+    stm << res.deadHands;
+    for (size_t pos = 0; pos < playersCount; ++pos)
+        stm << res.scores[pos];
+    return stm;
+}
+
+QDataStream &operator>>(QDataStream &stm, Result &res)
+{
+    quint8 formatVer = 0;
+    stm >> formatVer;
+    if (stm.status() == QDataStream::ReadPastEnd)
+        return stm;
+    if (formatVer > resFormatVer) {
+        stm.setStatus(QDataStream::ReadCorruptData);
+        return stm;
+    }
+    stm >> res.winner;
+    stm >> res.eastPlayer;
+    stm >> res.deadHands;
+    for (size_t pos = 0; pos < playersCount; ++pos)
+        stm >> res.scores[pos];
+    if (stm.status() != QDataStream::Ok) {
+        stm.setStatus(QDataStream::ReadCorruptData);
+        return stm;
+    }
+    qDebug(
+        "restored res: [%d, %d, %d, %d]; win: %d; east: %u; deads: %u",
+        res.scores[0], res.scores[1], res.scores[2], res.scores[3],
+        qint32(res.winner), quint32(res.eastPlayer), quint32(res.deadHands)
+    );
+    return stm;
+}
 
 static inline
 QString getCacheFile()
@@ -51,12 +95,7 @@ void PersistantStore::storeResult(const Result &res)
     cache.open(QIODevice::Append | QIODevice::WriteOnly);
     QDataStream stm(&cache);
     stm.setVersion(QDataStream::Qt_4_8);
-    qDebug("storing res: [%d, %d, %d, %d]; win: %u; east: %u; deads: %u", res.score(0), res.score(1), res.score(2), res.score(3), res.winnerPos(), res.eastPos(), quint32(res.deadHandsMask()));
-    stm << quint32(res.winnerPos());
-    stm << quint32(res.eastPos());
-    for (size_t pos = 0; pos < playersCount; ++pos)
-        stm << qint32(res.score(pos));
-    stm << quint8(res.deadHandsMask());
+    stm << res;
     stm << *separatorSig;
 }
 
@@ -96,22 +135,17 @@ bool PersistantStore::load(QString players[playersCount], QList<Result> &dest) c
     if (meta != *resultsSig)
         return false;
     forever {
-        quint32 winnerPos, eastPos;
-        stm >> winnerPos;
+        Result res;
+        stm >> res;
         if (stm.status() == QDataStream::ReadPastEnd)
             break;
-        stm >> eastPos;
-        qint32 scores[playersCount];
-        for (int i = 0; i < playersCount; ++i)
-            stm >> scores[i];
-        quint8 deadHands = 0;
-        stm >> deadHands;
+        if (stm.status() != QDataStream::Ok)
+            return false;
         meta = 0;
         stm >> meta;
         if (meta != *separatorSig)
             return false;
-        qDebug("read result: [%d, %d, %d, %d]; win: %u, east: %u, deads: %u", scores[0], scores[1], scores[2], scores[3], winnerPos, eastPos, quint32(deadHands));
-        dest.append(Result(scores, winnerPos, eastPos, deadHands));
+        dest.append(res);
     }
     return !dest.empty();
 }

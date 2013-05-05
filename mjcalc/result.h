@@ -20,8 +20,9 @@
 #ifndef MJCALC_ROUNDRESULT_H
 #define MJCALC_ROUNDRESULT_H
 
-#include <sys/types.h>
-#include <stdint.h>
+#include <QtCore/QtGlobal>
+
+class QDataStream;
 
 namespace mjcalc {
 
@@ -39,29 +40,29 @@ class Result
 {
 public:
     Result();
-    Result(int scores[playersCount], size_t winnerPos, size_t eastPos, uint8_t deadHandsMask);
 
     void addScores(int totals[playersCount]) const;
-    size_t prepareNextRound();
+    void prepareNextRound();
     void setWinner(Wind wind);
     Wind winnerWind() const;
 
-    int operator[] (Wind player) const;
-    int &operator[] (Wind player);
+    qint32 operator[] (Wind player) const;
+    qint32 &operator[] (Wind player);
     void setDeadHand(Wind player, bool state);
     bool isDeadHand(Wind player) const;
 
     size_t playerPos(Wind player) const;
-    int score(size_t pos) const {return scores[pos];}
-    size_t winnerPos() const {return winner;}
-    size_t eastPos() const {return eastPlayer;}
-    uint8_t deadHandsMask() const {return deadHands;}
 
 private:
-    int scores[playersCount];
-    size_t winner;
-    size_t eastPlayer;
-    uint8_t deadHands;
+    qint32 scores[playersCount];
+    qint8 winner;
+    quint8 eastPlayer;
+    quint8 deadHands;
+
+    friend
+    QDataStream &operator<<(QDataStream &, const Result &);
+    friend
+    QDataStream &operator>>(QDataStream &, Result &);
 };
 
 }
