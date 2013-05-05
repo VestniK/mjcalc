@@ -21,7 +21,7 @@
 #define MJCALC_ROUNDRESULT_H
 
 #include <sys/types.h>
-#include <cstdint>
+#include <stdint.h>
 
 namespace mjcalc {
 
