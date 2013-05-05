@@ -48,6 +48,13 @@ void Game::start()
 
 void Game::addScore()
 {
+    qDebug(
+        "Game::addScore(): e: %d; s:%d; w:%d; n:%d",
+        mCurrentRound->result()[mjcalc::East],
+        mCurrentRound->result()[mjcalc::South],
+        mCurrentRound->result()[mjcalc::West],
+        mCurrentRound->result()[mjcalc::North]
+    );
     mResults.addRoundResults(mCurrentRound->result());
     mStore->storeResult(mCurrentRound->result());
     mCurrentRound->startNext();

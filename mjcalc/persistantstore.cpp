@@ -51,6 +51,7 @@ void PersistantStore::storeResult(const Result &res)
     cache.open(QIODevice::Append | QIODevice::WriteOnly);
     QDataStream stm(&cache);
     stm.setVersion(QDataStream::Qt_4_8);
+    qDebug("storing res: [%d, %d, %d, %d]; win: %u; east: %u; deads: %u", res.score(0), res.score(1), res.score(2), res.score(3), res.winnerPos(), res.eastPos(), quint32(res.deadHandsMask()));
     stm << quint32(res.winnerPos());
     stm << quint32(res.eastPos());
     for (size_t pos = 0; pos < playersCount; ++pos)
@@ -109,6 +110,7 @@ bool PersistantStore::load(QString players[playersCount], QList<Result> &dest) c
         stm >> meta;
         if (meta != *separatorSig)
             return false;
+        qDebug("read result: [%d, %d, %d, %d]; win: %u, east: %u, deads: %u", scores[0], scores[1], scores[2], scores[3], winnerPos, eastPos, quint32(deadHands));
         dest.append(Result(scores, winnerPos, eastPos, deadHands));
     }
     return !dest.empty();
