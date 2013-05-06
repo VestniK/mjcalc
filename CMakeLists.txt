@@ -10,6 +10,7 @@ include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR} ${mjcalc_SOURCE_D
 
 add_subdirectory(mjcalc)
 add_subdirectory(qml)
+add_subdirectory(i18n)
 
 add_executable(mj-calc mjcalc.cpp)
 target_link_libraries(mj-calc ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTDECLARATIVE_LIBRARY} MjcalcEngine)

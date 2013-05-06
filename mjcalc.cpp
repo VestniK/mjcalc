@@ -1,6 +1,10 @@
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
 
+#include <QtCore/QTranslator>
+#include <QtCore/QString>
+#include <QtCore/QLocale>
+
 #include <QtGui/QApplication>
 
 #include <QtDeclarative/QDeclarativeContext>
@@ -12,6 +16,9 @@
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
+    QTranslator tr;
+    if (tr.load(MjCalcView::getResource(QString("mjcalc-%1").arg(QLocale::system().name())).toLocalFile()))
+        app.installTranslator(&tr);
 
     mjcalc::PersistantStore store;
     Game game(&store);

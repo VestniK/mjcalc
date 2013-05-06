@@ -24,7 +24,7 @@
 
 #include <QtGui/QApplication>
 
-static QUrl getResource(const QString &name)
+QUrl MjCalcView::getResource(const QString &name)
 {
 #ifdef BLACKBERRY
     return QUrl::fromLocalFile(QFileInfo("app/native/share/mjcalc/" + name).absoluteFilePath());

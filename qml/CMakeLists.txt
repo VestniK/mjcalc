@@ -14,6 +14,8 @@ set(QMLS
   ResultsRow.qml
 # Global UI style constants
   Style.qml
+)
+set(IMGS
 # Images
   rdragon.svg
   east.svg
@@ -24,8 +26,12 @@ set(QMLS
   normalHand.svg
   deadHand.svg
 )
+foreach (src ${QMLS})
+  list(APPEND TS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/${src}")
+endforeach(src)
+set(TS_SRC ${TS_SRC} PARENT_SCOPE)
 
-foreach(_qml ${QMLS})
+foreach(_qml ${QMLS} ${IMGS})
   get_filename_component(qml_name ${_qml} NAME)
   configure_file(${_qml} ${CMAKE_APPDATA_OUTPUT_DIRECTORY}/${qml_name} COPYONLY)
 endforeach()

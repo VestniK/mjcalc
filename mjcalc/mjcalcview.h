@@ -31,6 +31,8 @@ public:
     explicit MjCalcView(QWidget *parent = 0);
     virtual ~MjCalcView();
 
+    static QUrl getResource(const QString &name);
+
 public slots:
     void showNewPage();
     void showAddScores();
