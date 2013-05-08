@@ -34,9 +34,9 @@ QtObject {
         property double opacity: 0.80
     }
 
-    property string labelFont: "Helvetica"
+    property string labelFont: "Myriad Pro"
     property double labelFontSize: 20
-    property string descriptionFont: "Helvetica"
+    property string descriptionFont: "Myriad Pro"
     property double descriptionFontSize: 16
     property bool descriptionItalic: true
     property bool descriptionBold: false
