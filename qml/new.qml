@@ -36,45 +36,43 @@ Background {
                 id: eastName
                 width: parent.width
                 icon: "east.svg"
-                target: game
-                property: "player1"
                 focus: true
             }
             NameInput {
                 id: southName
                 width: parent.width
                 icon: "south.svg"
-                target: game
-                property: "player2"
             }
             NameInput {
                 id: westName
                 width: parent.width
                 icon: "west.svg"
-                target: game
-                property: "player3"
             }
             NameInput {
                 id: northName
                 width: parent.width
                 icon: "north.svg"
-                target: game
-                property: "player4"
             }
         }
     }
 
     Pannel {
         id: toolbar
+        backButton: !game.isEmpty()
+        onBack: game.showMainPage()
         PannelButton {
             id: newBtn
             icon: "new.svg"
             onButtonClicked: {
                 if (eastName.text.length == 0 || southName.text.length == 0 || westName.text.length == 0 || northName.text.length == 0) {
-                    canvas.riseError(qsTr("Some names are missing"));
+                    canvas.riseError(qsTr("Some names are missing."));
                     return;
                 }
-                game.start()
+                game.player1 = eastName.text;
+                game.player2 = southName.text;
+                game.player3 = westName.text;
+                game.player4 = northName.text;
+                game.start();
             }
         }
     }

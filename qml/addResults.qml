@@ -88,6 +88,7 @@ Background {
 
     Pannel {
         id: toolbar
+        onBack: game.showMainPage()
         PannelButton {
             id: addBtn
             icon: "add.svg"

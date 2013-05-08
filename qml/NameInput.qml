@@ -20,8 +20,6 @@
 import QtQuick 1.0
 
 Item {
-    property alias target: binding.target
-    property alias property: binding.property
     property alias text: name.text
     property alias icon: image.source
 
@@ -47,9 +45,5 @@ Item {
             margins: globalStyle.margins
         }
         focus: parent.focus
-    }
-    Binding {
-        id: binding
-        value: name.text
     }
 }

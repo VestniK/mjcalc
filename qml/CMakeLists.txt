@@ -30,6 +30,7 @@ set(IMGS
 # Buttons
   add.svg
   new.svg
+  back.svg
 )
 foreach (src ${QMLS})
   list(APPEND TS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/${src}")

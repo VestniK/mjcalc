@@ -70,6 +70,7 @@ Background {
 
     Pannel {
         id: toolbar
+        backButton: false
         PannelButton {
             id: newBtn
             icon: "new.svg"

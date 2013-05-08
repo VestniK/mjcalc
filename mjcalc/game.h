@@ -61,7 +61,7 @@ public:
 
     Round *currentRound() {return mCurrentRound;}
     QAbstractItemModel *results() {return &mResults;}
-    bool isEmpty() const;
+    Q_INVOKABLE bool isEmpty() const;
 
 public slots:
     void setPlayer1(const QString &val) {mPlayers[0] = val;}

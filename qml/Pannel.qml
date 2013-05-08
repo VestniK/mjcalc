@@ -21,6 +21,7 @@ import QtQuick 1.1
 
 Rectangle {
     default property alias buttons: buttonsRow.children
+    property alias backButton: backBtn.visible
     anchors {
         bottom: parent.bottom
         left: parent.left
@@ -29,6 +30,16 @@ Rectangle {
     height: globalStyle.toolbar.height
     color: globalStyle.toolbar.bgColor
     opacity: globalStyle.toolbar.opacity
+
+    signal back()
+
+    PannelButton {
+        id: backBtn
+        anchors.left: parent.left
+        anchors.margins: globalStyle.margins
+        icon: "back.svg"
+        onButtonClicked: back()
+    }
     Row {
         id:buttonsRow
         spacing: globalStyle.margins

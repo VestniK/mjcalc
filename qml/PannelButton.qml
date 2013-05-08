@@ -22,7 +22,8 @@ import QtQuick 1.1
 Image {
     id: btnIcon
     property alias icon: btnIcon.source
-    height: parent.height
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
     fillMode: Image.PreserveAspectFit
     smooth: true
 
