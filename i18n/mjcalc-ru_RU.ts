@@ -19,6 +19,10 @@
         <source>Winner hand score is less then %1.</source>
         <translation>Количество очков у победителя меньше %1.</translation>
     </message>
+    <message>
+        <source>Some players names are missing.</source>
+        <translation>У некоторых игроков не указаны имена.</translation>
+    </message>
 </context>
 <context>
     <name>MessageBox</name>
@@ -53,7 +57,7 @@
     </message>
     <message>
         <source>Some names are missing</source>
-        <translation>Указаны не все имена</translation>
+        <translation type="obsolete">Указаны не все имена</translation>
     </message>
 </context>
 </TS>
