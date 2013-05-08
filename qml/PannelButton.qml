@@ -17,27 +17,22 @@
  *
  */
 
-import QtQuick 1.0
+import QtQuick 1.1
 
-QtObject {
-    property int margins: 5
-    property variant textArea: QtObject {
-        property int borderRadius: 5
-        property int borderWidth: 1
-        property color borderColor: "black"
-        property color bgColor: "white"
-        property double opacity: 0.85
-    }
-    property variant toolbar: QtObject {
-        property int height: 60
-        property color bgColor: "black"
-        property double opacity: 0.80
-    }
+Image {
+    id: btnIcon
+    property alias icon: btnIcon.source
+    height: parent.height
+    fillMode: Image.PreserveAspectFit
+    smooth: true
 
-    property string labelFont: "Helvetica"
-    property double labelFontSize: 20
-    property string descriptionFont: "Helvetica"
-    property double descriptionFontSize: 16
-    property bool descriptionItalic: true
-    property bool descriptionBold: false
+    signal buttonClicked()
+
+    MouseArea {
+        anchors.fill: parent
+        onPressed: parent.opacity=0.75
+        onReleased: parent.opacity=1.0
+        onCanceled: parent.opacity=1.0
+        onClicked: buttonClicked()
+    }
 }

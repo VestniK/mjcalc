@@ -17,27 +17,26 @@
  *
  */
 
-import QtQuick 1.0
+import QtQuick 1.1
 
-QtObject {
-    property int margins: 5
-    property variant textArea: QtObject {
-        property int borderRadius: 5
-        property int borderWidth: 1
-        property color borderColor: "black"
-        property color bgColor: "white"
-        property double opacity: 0.85
+Rectangle {
+    default property alias buttons: buttonsRow.children
+    anchors {
+        bottom: parent.bottom
+        left: parent.left
+        right: parent.right
     }
-    property variant toolbar: QtObject {
-        property int height: 60
-        property color bgColor: "black"
-        property double opacity: 0.80
+    height: globalStyle.toolbar.height
+    color: globalStyle.toolbar.bgColor
+    opacity: globalStyle.toolbar.opacity
+    Row {
+        id:buttonsRow
+        spacing: globalStyle.margins
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            right: parent.right
+            margins: globalStyle.margins
+        }
     }
-
-    property string labelFont: "Helvetica"
-    property double labelFontSize: 20
-    property string descriptionFont: "Helvetica"
-    property double descriptionFontSize: 16
-    property bool descriptionItalic: true
-    property bool descriptionBold: false
 }

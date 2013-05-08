@@ -61,18 +61,20 @@ Background {
                 target: game
                 property: "player4"
             }
-            // TODO: elliminate this spacer somehow
-            Item {height: globalStyle.margins; width: parent.width}
-            TextButton {
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTr("Start")
-                onButtonClick: {
-                    if (eastName.text.length == 0 || southName.text.length == 0 || westName.text.length == 0 || northName.text.length == 0) {
-                        canvas.riseError(qsTr("Some names are missing"));
-                        return;
-                    }
-                    game.start()
+        }
+    }
+
+    Pannel {
+        id: toolbar
+        PannelButton {
+            id: newBtn
+            icon: "new.svg"
+            onButtonClicked: {
+                if (eastName.text.length == 0 || southName.text.length == 0 || westName.text.length == 0 || northName.text.length == 0) {
+                    canvas.riseError(qsTr("Some names are missing"));
+                    return;
                 }
+                game.start()
             }
         }
     }

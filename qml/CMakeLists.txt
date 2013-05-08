@@ -8,6 +8,8 @@ set(QMLS
   TextButton.qml
   LineEdit.qml
   MessageBox.qml
+  Pannel.qml
+  PannelButton.qml
 # Reusable combinations
   ScoreInput.qml
   NameInput.qml
@@ -25,6 +27,9 @@ set(IMGS
   winner.svg
   normalHand.svg
   deadHand.svg
+# Buttons
+  add.svg
+  new.svg
 )
 foreach (src ${QMLS})
   list(APPEND TS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/${src}")

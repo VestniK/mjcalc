@@ -22,33 +22,6 @@ import QtQuick 1.0
 Background {
     Style {id: globalStyle}
 
-    Item {
-        id: buttons
-        anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
-        }
-        height: childrenRect.height + globalStyle.margins
-        TextButton {
-            anchors {
-                left: parent.left
-                top: parent.top
-                margins: globalStyle.margins
-            }
-            text: qsTr("New"); width: parent.width/2 - 2*globalStyle.margins
-            onButtonClick: game.showNewPage()
-        }
-        TextButton {
-            anchors {
-                right: parent.right
-                top: parent.top
-                margins: globalStyle.margins
-            }
-            text: qsTr("Add scores"); width: parent.width/2 - 2*globalStyle.margins
-            onButtonClick: game.showAddScores()
-        }
-    }
     Rectangle {
         border.color: globalStyle.textArea.borderColor
         border.width: globalStyle.textArea.borderWidth
@@ -58,8 +31,8 @@ Background {
 
         anchors {
             margins: globalStyle.margins
-            top: buttons.bottom
-            bottom: parent.bottom
+            top: parent.top
+            bottom: toolbar.top
             left: parent.left
             right: parent.right
         }
@@ -92,6 +65,20 @@ Background {
                 }
                 column1: totals1; column2: totals2; column3: totals3; column4: totals4;
             }
+        }
+    }
+
+    Pannel {
+        id: toolbar
+        PannelButton {
+            id: newBtn
+            icon: "new.svg"
+            onButtonClicked: game.showNewPage()
+        }
+        PannelButton {
+            id: addBtn
+            icon: "add.svg"
+            onButtonClicked: game.showAddScores()
         }
     }
 }

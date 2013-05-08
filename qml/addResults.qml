@@ -58,7 +58,7 @@ Background {
                 id: playerEast; icon: "east.svg"; width: parent.width
                 target: game.currentRound.eastHand; property: "score"
                 hand: game.currentRound.eastHand
-                name: game.eastPlayer; z: 1
+                name: game.eastPlayer; z: 0.8
                 onSelected: {game.currentRound.setWinner(0); winnerMark.state = "East";}
                 focus: true
             }
@@ -66,36 +66,37 @@ Background {
                 id: playerSouth; icon: "south.svg"; width: parent.width
                 target: game.currentRound.southHand; property: "score"
                 hand: game.currentRound.southHand
-                name: game.southPlayer; z: 1
+                name: game.southPlayer; z: 0.8
                 onSelected: {game.currentRound.setWinner(1); winnerMark.state = "South";}
             }
             ScoreInput {
                 id: playerWest; icon: "west.svg"; width: parent.width
                 target: game.currentRound.westHand; property: "score"
                 hand: game.currentRound.westHand
-                name: game.westPlayer; z: 1
+                name: game.westPlayer; z: 0.8
                 onSelected: {game.currentRound.setWinner(2); winnerMark.state = "West";}
             }
             ScoreInput {
                 id: playerNorth; icon: "north.svg"; width: parent.width
                 target: game.currentRound.northHand; property: "score"
                 hand: game.currentRound.northHand
-                name: game.northPlayer; z: 1
+                name: game.northPlayer; z: 0.8
                 onSelected: {game.currentRound.setWinner(3); winnerMark.state = "North";}
             }
-            // TODO: elliminate this spacer somehow
-            Item {height: globalStyle.margins; width: parent.width}
-            TextButton {
-                id: button; width: parent.width/2; text: qsTr("Add")
-                anchors.horizontalCenter: parent.horizontalCenter
+        }
+    }
 
-                onButtonClick: {
-                    if (playerEast.text.length == 0) playerEast.text = "0";
-                    if (playerSouth.text.length == 0) playerSouth.text = "0";
-                    if (playerWest.text.length == 0) playerWest.text = "0";
-                    if (playerNorth.text.length == 0) playerNorth.text = "0";
-                    game.addScore();
-                }
+    Pannel {
+        id: toolbar
+        PannelButton {
+            id: addBtn
+            icon: "add.svg"
+            onButtonClicked: {
+                if (playerEast.text.length == 0) playerEast.text = "0";
+                if (playerSouth.text.length == 0) playerSouth.text = "0";
+                if (playerWest.text.length == 0) playerWest.text = "0";
+                if (playerNorth.text.length == 0) playerNorth.text = "0";
+                game.addScore();
             }
         }
     }
