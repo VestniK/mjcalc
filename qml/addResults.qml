@@ -103,6 +103,6 @@ Background {
     }
 
     Component.onCompleted: {
-        game.scoresError.connect(canvas.riseError);
+        game.riseError.connect(canvas.riseError);
     }
 }

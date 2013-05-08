@@ -39,9 +39,17 @@ Game::Game(mjcalc::PersistantStore *store, QObject *parent): QObject(parent), mS
     mCurrentRound->setResult(next);
 }
 
-void Game::start()
+void Game::start(const QString &east, const QString &south, const QString &west, const QString &north)
 {
+    if (east.isEmpty() || south.isEmpty() || west.isEmpty() || north.isEmpty()) {
+        emit riseError(tr("Some players names are missing."));
+        return;
+    }
     mResults.clear();
+    mPlayers[0] = east;
+    mPlayers[1] = south;
+    mPlayers[2] = west;
+    mPlayers[3] = north;
     mStore->reset(mPlayers);
     emit showMainPage();
 }
@@ -49,10 +57,10 @@ void Game::start()
 void Game::addScore()
 {
     switch (mCurrentRound->result().state()) {
-        case mjcalc::Result::NoWinner: emit scoresError(tr("Winner is not specified.")); return;
-        case mjcalc::Result::OddHand: emit scoresError(tr("Some players have odd hand score.")); return;
-        case mjcalc::Result::WinnerIsDead: emit scoresError(tr("Winner is marked as dead hand.")); return;
-        case mjcalc::Result::SmallWinnerHand: emit scoresError(tr("Winner hand score is less then %1.").arg(mjcalc::minWinnerScore)); return;
+        case mjcalc::Result::NoWinner: emit riseError(tr("Winner is not specified.")); return;
+        case mjcalc::Result::OddHand: emit riseError(tr("Some players have odd hand score.")); return;
+        case mjcalc::Result::WinnerIsDead: emit riseError(tr("Winner is marked as dead hand.")); return;
+        case mjcalc::Result::SmallWinnerHand: emit riseError(tr("Winner hand score is less then %1.").arg(mjcalc::minWinnerScore)); return;
         case mjcalc::Result::Ok: break;
     }
     qDebug(

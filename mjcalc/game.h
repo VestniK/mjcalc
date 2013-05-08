@@ -32,10 +32,10 @@ class Game : public QObject
     Q_OBJECT
     Q_DISABLE_COPY(Game)
     // Access players by ID
-    Q_PROPERTY(QString player1 READ player1 WRITE setPlayer1)
-    Q_PROPERTY(QString player2 READ player2 WRITE setPlayer2)
-    Q_PROPERTY(QString player3 READ player3 WRITE setPlayer3)
-    Q_PROPERTY(QString player4 READ player4 WRITE setPlayer4)
+    Q_PROPERTY(QString player1 READ player1 CONSTANT)
+    Q_PROPERTY(QString player2 READ player2 CONSTANT)
+    Q_PROPERTY(QString player3 READ player3 CONSTANT)
+    Q_PROPERTY(QString player4 READ player4 CONSTANT)
     // Access players by wind
     Q_PROPERTY(QString eastPlayer READ eastPlayer CONSTANT)
     Q_PROPERTY(QString southPlayer READ southPlayer CONSTANT)
@@ -64,12 +64,7 @@ public:
     Q_INVOKABLE bool isEmpty() const;
 
 public slots:
-    void setPlayer1(const QString &val) {mPlayers[0] = val;}
-    void setPlayer2(const QString &val) {mPlayers[1] = val;}
-    void setPlayer3(const QString &val) {mPlayers[2] = val;}
-    void setPlayer4(const QString &val) {mPlayers[3] = val;}
-
-    void start();
+    void start(const QString &east, const QString &south, const QString &west, const QString &north);
     void addScore();
 
 signals:
@@ -77,7 +72,7 @@ signals:
     void showAddScores();
     void showMainPage();
 
-    void scoresError(QString msg);
+    void riseError(QString msg);
 
 private:
     QString mPlayers[mjcalc::playersCount];

@@ -63,17 +63,11 @@ Background {
         PannelButton {
             id: newBtn
             icon: "new.svg"
-            onButtonClicked: {
-                if (eastName.text.length == 0 || southName.text.length == 0 || westName.text.length == 0 || northName.text.length == 0) {
-                    canvas.riseError(qsTr("Some names are missing."));
-                    return;
-                }
-                game.player1 = eastName.text;
-                game.player2 = southName.text;
-                game.player3 = westName.text;
-                game.player4 = northName.text;
-                game.start();
-            }
+            onButtonClicked: game.start(eastName.text, southName.text, westName.text, northName.text)
         }
+    }
+
+    Component.onCompleted: {
+        game.riseError.connect(canvas.riseError);
     }
 }
