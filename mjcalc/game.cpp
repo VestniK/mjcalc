@@ -46,6 +46,7 @@ void Game::start(const QString &east, const QString &south, const QString &west,
         return;
     }
     mResults.clear();
+    mCurrentRound->setResult(mjcalc::Result());
     mPlayers[0] = east;
     mPlayers[1] = south;
     mPlayers[2] = west;
