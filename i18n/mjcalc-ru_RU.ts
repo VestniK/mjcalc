@@ -31,25 +31,25 @@
     <name>addResults</name>
     <message>
         <source>Add</source>
-        <translation>Добавить</translation>
+        <translation type="obsolete">Добавить</translation>
     </message>
 </context>
 <context>
     <name>main</name>
     <message>
         <source>New</source>
-        <translation>Заново</translation>
+        <translation type="obsolete">Заново</translation>
     </message>
     <message>
         <source>Add scores</source>
-        <translation>Добавить очки</translation>
+        <translation type="obsolete">Добавить очки</translation>
     </message>
 </context>
 <context>
     <name>new</name>
     <message>
         <source>Start</source>
-        <translation>Начать</translation>
+        <translation type="obsolete">Начать</translation>
     </message>
     <message>
         <source>Some names are missing</source>
