@@ -22,14 +22,13 @@ import QtQuick 1.1
 Rectangle {
     property alias text: message.text
 
-    width: Math.min(parent.width/2, implicitWidth)
+    width: parent.width/2
+    height: message.height + okBtn.height + 3*globalStyle.margins
     border.color: globalStyle.textArea.borderColor
     border.width: globalStyle.textArea.borderWidth
     radius: globalStyle.textArea.borderRadius
     color: globalStyle.textArea.bgColor
     opacity: globalStyle.textArea.opacity
-    implicitHeight: message.implicitHeight + okBtn.height + 3*globalStyle.margins
-    implicitWidth: message.implicitWidth + 2*globalStyle.margins
 
     Text {
         id: message
