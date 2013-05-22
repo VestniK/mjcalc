@@ -3,14 +3,14 @@
 
     <id>ru.vestnik.mjcalc</id>
     <name>Mahjong Calculator
-        <text xml:lang="ru_RU">Маджонг Калкулятор</text>
+        <text xml:lang="ru_RU">Маджонг Калькулятор</text>
     </name>
     <description>Calculator for traditional mahjong game
-        <text xml:lang="ru_RU">Калкулятор для традиционного маджонга</text>
+        <text xml:lang="ru_RU">Калькулятор для традиционного маджонга</text>
     </description>
 
     <versionNumber>1.0.0</versionNumber>
-    <buildId>0</buildId>
+    <buildId>1</buildId>
 
     <author>VestniK</author>
     <authorId>gYAAgMGNgQJg_WGWOZq9SCAFV_8</authorId>
