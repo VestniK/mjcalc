@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<qnx xmlns="http://www.qnx.com/schemas/application/1.0">
+
+    <id>ru.vestnik.mjcalc</id>
+    <name>Mahjong Calculator
+        <text xml:lang="ru_RU">Маджонг Калькулятор</text>
+    </name>
+    <description>Calculator for traditional mahjong game
+        <text xml:lang="ru_RU">Калькулятор для традиционного маджонга</text>
+    </description>
+
+    <versionNumber>1.0.0</versionNumber>
+    <buildId>1</buildId>
+
+    <author>VestniK</author>
+    <authorId>gYAAgMGNgQJg_WGWOZq9SCAFV_8</authorId>
+
+    <initialWindow>
+        <autoOrients>true</autoOrients>
+        <systemChrome>none</systemChrome>
+        <transparent>false</transparent>
+    </initialWindow>
+
+    <category>core.games</category>
+    <asset path="${BUILD_DIR}/icon.png">icon.png</asset>
+    <asset path="${BUILD_DIR}/bin/mj-calc" entry="true" type="Qnx/Elf">bin/mj-calc</asset>
+    <asset path="${BUILD_DIR}/share">share</asset>
+
+    <icon>
+        <image>icon.png</image>
+    </icon>
+
+    <action system="true">run_native</action>
+
+    <env var="LD_LIBRARY_PATH" value="app/native/lib"/>
+
+</qnx>

@@ -1,17 +1,16 @@
 set(CMAKE_SYSTEM_NAME QNX)
 
-set(CMAKE_C_COMPILER arm-unknown-nto-qnx6.5.0eabi-gcc)
-set(CMAKE_CXX_COMPILER arm-unknown-nto-qnx6.5.0eabi-g++)
+set(CMAKE_C_COMPILER arm-unknown-nto-qnx8.0.0eabi-gcc)
+set(CMAKE_CXX_COMPILER arm-unknown-nto-qnx8.0.0eabi-g++)
 
 # Qt4 related stuff required here due to FindQt4.cmake issues
-set(QT_QMAKE_EXECUTABLE $ENV{QT_DIR}/bin/qmake)
-set(QT_QTCORE_LIBRARY_RELEASE $ENV{QT_DIR}/lib/libQtCore.so)
+set(QT_QTCORE_LIBRARY_RELEASE $ENV{QNX_TARGET}/armle-v7/usr/lib/qt4/lib/libQtCore.so)
 add_definitions(
   -DBLACKBERRY
   -DQNX
 )
 set(BLACKBERRY True)
-set(PLAYBOOK True)
+set(BB10 True)
 
 set(CMAKE_FIND_ROOT_PATH $ENV{QNX_TARGET}/usr)
 

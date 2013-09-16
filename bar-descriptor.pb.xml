@@ -37,7 +37,7 @@
     <asset path="${QT4_DIR}/lib/libQtXmlPatterns.so.4">lib/libQtXmlPatterns.so.4</asset>
     <asset path="${QT4_DIR}/lib/libQtSql.so.4">lib/libQtSql.so.4</asset>
     <asset path="${QT4_DIR}/plugins/platforms/libblackberry.so">lib/plugins/platforms/libblackberry.so</asset>
-    <asset path="${QT4_DIR}/plugins/imageformats/libqsvg.so">lib/plugins/imageformats/libqsvg.so</asset>
+    <asset path="${QT4_DIR}/plugins/imageformats/libqsvg.so">lib/plugins/imageformats/libqsvg.so</asset> 
 
     <icon>
         <image>icon.png</image>

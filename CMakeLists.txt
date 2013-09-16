@@ -33,8 +33,14 @@ if (BLACKBERRY)
     set(DEV_FLAGS -devMode -debugToken ${DEBUG_TOKEN})
   endif("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
 
-  add_custom_command(OUTPUT mjcalc.bar DEPENDS icon.png mj-calc ${CMAKE_CURRENT_SOURCE_DIR}/bar-descriptor.xml
-    COMMAND ${BB_PACKAGER} -package ${CMAKE_CURRENT_BINARY_DIR}/mjcalc.bar -D BUILD_DIR=${CMAKE_CURRENT_BINARY_DIR} -D QT4_DIR=$ENV{QT_DIR} ${DEV_FLAGS} ${CMAKE_CURRENT_SOURCE_DIR}/bar-descriptor.xml
+  if (PLAYBOOK)
+    set(BAR_DESCRIPTOR ${CMAKE_CURRENT_SOURCE_DIR}/bar-descriptor.pb.xml)
+  elseif(BB10)
+    set(BAR_DESCRIPTOR ${CMAKE_CURRENT_SOURCE_DIR}/bar-descriptor.bb10.xml)
+  endif(PLAYBOOK)
+
+  add_custom_command(OUTPUT mjcalc.bar DEPENDS icon.png mj-calc ${BAR_DESCRIPTOR}
+    COMMAND ${BB_PACKAGER} -package ${CMAKE_CURRENT_BINARY_DIR}/mjcalc.bar -D BUILD_DIR=${CMAKE_CURRENT_BINARY_DIR} -D QT4_DIR=$ENV{QT_DIR} ${DEV_FLAGS} ${BAR_DESCRIPTOR}
   )
   add_custom_target(package DEPENDS mjcalc.bar)
 endif(BLACKBERRY)
