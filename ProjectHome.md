@@ -1,0 +1,1 @@
+Calculator to save time between rounds and focus on the game. Target platform is Blackberry TabletOS 2 and Blackberry 10. Some plans to port to Android after Qt 5.2 release.
